@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
+      colorScheme: ColorScheme.fromSwatch().copyWith(
+        primary: AppColors.red,
+      ),
       useMaterial3: true,
       primaryColor: AppColors.red,
       appBarTheme: AppBarTheme(

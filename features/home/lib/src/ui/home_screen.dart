@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
+
     return BlocProvider<ProductsBloc>(
       create: (BuildContext context) => ProductsBloc(
         fetchAllProductsUseCase: appLocator.get<FetchAllProductsUseCase>(),
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         } else {
-                          return GridView(
+                          return GridView.builder(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisSpacing: 20,
@@ -92,16 +93,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisCount: 2,
                                     childAspectRatio: 0.9),
                             padding: const EdgeInsets.all(18),
-                            children: <Widget>[
-                              ...List.generate(
-                                state.filteredProducts.length,
-                                (index) => ProductItem(
-                                  productItem: state.filteredProducts[index],
-                                  key: ValueKey(
-                                      state.filteredProducts[index].id),
-                                ),
-                              )
-                            ],
+                            itemCount: state.filteredProducts.length,
+                            itemBuilder: (
+                              BuildContext context,
+                              int index,
+                            ) {
+                              return ProductItem(
+                                productItem: state.filteredProducts[index],
+                                key: ValueKey(state.filteredProducts[index].id),
+                              );
+                            },
                           );
                         }
                       }
