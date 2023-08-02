@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ErrorHandler {
-  Future<Never> handleError(DioError error) async {
+  Future<Never> handleError(DioException error) async {
     final Response<dynamic>? response = error.response;
     if (response == null) {
       throw Exception();
