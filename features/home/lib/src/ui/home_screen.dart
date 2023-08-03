@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:core/di/app_di.dart';
 import 'package:core/enums/api_enums.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/usecases/export_usecases.dart';
+import 'package:domain/usecases/usecases.dart';
 import 'package:flutter/material.dart';
 import 'package:home/src/ui/main_bottom_navigation_bar.dart';
 import 'product_item.dart';

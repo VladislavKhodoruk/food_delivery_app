@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core/enums/api_enums.dart';
 import 'package:domain/models/product/product_model.dart';
-import 'package:domain/usecases/export_usecases.dart';
+import 'package:domain/usecases/usecases.dart';
 import 'package:domain/usecases/usecase.dart';
 
 part 'event.dart';
