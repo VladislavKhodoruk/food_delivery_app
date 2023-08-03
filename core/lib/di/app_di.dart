@@ -4,6 +4,5 @@ final AppDI appDI = AppDI();
 final GetIt appLocator = GetIt.instance;
 
 class AppDI {
-  void initDependencies() {
-  }
+  void initDependencies() {}
 }

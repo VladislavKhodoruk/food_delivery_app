@@ -4,49 +4,47 @@ import 'package:domain/models/product/product_model.dart';
 import 'package:domain/usecases/usecases.dart';
 import 'package:domain/usecases/usecase.dart';
 
-part 'event.dart';
-part 'state.dart';
+part 'home_event.dart';
+part 'home_state.dart';
 
-class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FetchAllProductsUseCase _fetchAllProductsUseCase;
-  ProductsBloc({
+  HomeBloc({
     required FetchAllProductsUseCase fetchAllProductsUseCase,
   })  : _fetchAllProductsUseCase = fetchAllProductsUseCase,
-        super(ProductsState()) {
-    on<LoadProductsEvent>(_loadProducts);
-    on<FilterProductsEvent>(_filterProducts);
+        super(HomeState()) {
+    on<LoadHomeEvent>(_loadProducts);
+    on<FilterHomeEvent>(_filterProducts);
     on<SetCategoryEvent>(_setCategory);
+    add(LoadHomeEvent());
   }
 
-  @override
-  // TODO: implement state
-  ProductsState get state => super.state;
-
-  void _loadProducts(
-      LoadProductsEvent event, Emitter<ProductsState> emit) async {
+  void _loadProducts(LoadHomeEvent event, Emitter<HomeState> emit) async {
     emit(state.copyWith(loadingStatus: LoadingStatus.loading));
     try {
-      final products = await _fetchAllProductsUseCase.execute(const NoParams());
+      final List<ProductModel> products =
+          await _fetchAllProductsUseCase.execute(const NoParams());
       emit(state.copyWith(
           loadingStatus: LoadingStatus.loaded, products: products));
-      add(FilterProductsEvent());
+      add(FilterHomeEvent());
     } catch (e, _) {
       emit(state.copyWith(
           loadingStatus: LoadingStatus.error, errorMessage: e.toString()));
     }
   }
 
-  void _setCategory(SetCategoryEvent event, Emitter<ProductsState> emit) {
+  void _setCategory(SetCategoryEvent event, Emitter<HomeState> emit) {
     emit(state.copyWith(category: event.category));
-    add(FilterProductsEvent());
+    add(FilterHomeEvent());
   }
 
-  void _filterProducts(FilterProductsEvent event, Emitter<ProductsState> emit) {
+  void _filterProducts(FilterHomeEvent event, Emitter<HomeState> emit) {
     if (state.category.isEmpty) {
       emit(state.copyWith(filteredProducts: state.products));
     } else {
-      List<ProductModel> newFilteredProducts =
-          state.products.where((el) => el.category == state.category).toList();
+      List<ProductModel> newFilteredProducts = state.products
+          .where((ProductModel product) => product.category == state.category)
+          .toList();
       emit(state.copyWith(filteredProducts: newFilteredProducts));
     }
   }

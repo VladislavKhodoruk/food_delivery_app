@@ -27,7 +27,7 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
               padding: const EdgeInsets.all(5),
               decoration: const BoxDecoration(
                 color: AppColors.white,
-                boxShadow: [
+                boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: AppColors.shadowBlue,
                     spreadRadius: 0,
@@ -40,17 +40,18 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
                 ),
               ),
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(
-                      Icons.shopping_bag_outlined,
-                      color: AppColors.red,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text('20\$', style: textTheme.bodyMedium)
-                  ]),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const Icon(
+                    Icons.shopping_bag_outlined,
+                    color: AppColors.red,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text('20\$', style: textTheme.bodyMedium)
+                ],
+              ),
             ),
           ),
         ],

@@ -9,14 +9,15 @@ class PopupMenu extends StatelessWidget {
   final StringCallback onPressed;
   final String selectedOption;
 
-  const PopupMenu(
-      {super.key,
-      required this.menuOptions,
-      required this.onPressed,
-      required this.selectedOption});
+  const PopupMenu({
+    super.key,
+    required this.menuOptions,
+    required this.onPressed,
+    required this.selectedOption,
+  });
 
   List<String> getOptions() {
-    List<String> newOptions = menuOptions;
+    final List<String> newOptions = menuOptions;
     newOptions.sort();
     newOptions.insert(0, '');
     return newOptions.toSet().toList();
@@ -24,7 +25,7 @@ class PopupMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final TextTheme textTheme = Theme.of(context).textTheme;
 
     return PopupMenuButton<String>(
       initialValue: selectedOption,
@@ -37,13 +38,15 @@ class PopupMenu extends StatelessWidget {
       elevation: 5,
       icon: const Icon(Icons.menu_rounded, color: AppColors.red),
       itemBuilder: (BuildContext context) => getOptions()
-          .map((String item) => PopupMenuItem<String>(
-                value: item,
-                child: Text(
-                  item.isNotEmpty ? item.capitalize() : AppTextConstants.all,
-                  style: textTheme.bodyMedium,
-                ),
-              ))
+          .map(
+            (String item) => PopupMenuItem<String>(
+              value: item,
+              child: Text(
+                item.isNotEmpty ? item.capitalize() : AppTextConstants.all,
+                style: textTheme.bodyMedium,
+              ),
+            ),
+          )
           .toList(),
     );
   }

@@ -8,13 +8,14 @@ class TransparentLabel extends StatelessWidget {
   final EdgeInsets? padding;
   final EdgeInsets? margin;
 
-  const TransparentLabel(
-      {super.key,
-      required this.child,
-      this.padding,
-      this.margin,
-      this.height,
-      this.width});
+  const TransparentLabel({
+    super.key,
+    required this.child,
+    this.padding,
+    this.margin,
+    this.height,
+    this.width,
+  });
 
   @override
   Widget build(BuildContext context) {

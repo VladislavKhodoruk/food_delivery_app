@@ -7,7 +7,11 @@ class ProductItem extends StatefulWidget {
   final ProductModel productItem;
   final VoidCallback? onPressed;
 
-  const ProductItem({required this.productItem, this.onPressed, super.key});
+  const ProductItem({
+    required this.productItem,
+    this.onPressed,
+    super.key,
+  });
 
   @override
   State<ProductItem> createState() => _ProductItemState();
@@ -36,7 +40,7 @@ class _ProductItemState extends State<ProductItem> {
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
           color: AppColors.white,
-          boxShadow: [
+          boxShadow: <BoxShadow>[
             BoxShadow(
               color: AppColors.shadowBlue,
               spreadRadius: 0,
