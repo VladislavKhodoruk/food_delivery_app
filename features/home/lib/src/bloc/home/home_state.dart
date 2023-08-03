@@ -5,14 +5,22 @@ class HomeState {
   final String category;
   final List<ProductModel> products;
   final List<ProductModel> filteredProducts;
-  final String? errorMessage;
+  final String errorMessage;
 
-  HomeState({
+  const HomeState({
+    required this.loadingStatus,
+    required this.category,
+    required this.products,
+    required this.filteredProducts,
+    required this.errorMessage,
+  });
+
+  HomeState.empty({
     this.loadingStatus = LoadingStatus.loading,
     this.category = '',
     this.products = const [],
     this.filteredProducts = const [],
-    this.errorMessage,
+    this.errorMessage = '',
   });
 
   HomeState copyWith({

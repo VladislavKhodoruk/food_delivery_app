@@ -12,10 +12,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({
     required FetchAllProductsUseCase fetchAllProductsUseCase,
   })  : _fetchAllProductsUseCase = fetchAllProductsUseCase,
-        super(HomeState()) {
+        super(
+          HomeState.empty(),
+        ) {
     on<LoadHomeEvent>(_loadProducts);
     on<FilterHomeEvent>(_filterProducts);
     on<SetCategoryEvent>(_setCategory);
+
     add(LoadHomeEvent());
   }
 
