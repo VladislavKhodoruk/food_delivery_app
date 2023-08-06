@@ -10,6 +10,7 @@ import 'package:home/src/ui/main_bottom_navigation_bar.dart';
 import 'product_item.dart';
 import '../bloc/home_bloc.dart';
 
+@RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
