@@ -27,6 +27,8 @@ dependencies:
     path: ../features/order_history
   cart:
     path: ../features/cart
+  details:
+    path: ../features/details
 
   auto_route: ^7.8.0
 

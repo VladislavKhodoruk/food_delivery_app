@@ -1,3 +1,5 @@
 library domain;
 
-export 'models/product/product_model.dart';
+export 'models/models.dart';
+export 'usecases/usecases.dart';
+export 'repositories/repositories.dart';

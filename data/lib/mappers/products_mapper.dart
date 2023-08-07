@@ -4,13 +4,13 @@ import '../entity/product/product_entity.dart';
 abstract class ProductMapper {
   static ProductEntity toEntity(ProductModel model) {
     return ProductEntity(
-      name: model.name,
-      description: model.description,
-      cost: model.cost,
-      image: model.image,
-      id: model.id,
-      category: model.category
-    );
+        name: model.name,
+        description: model.description,
+        cost: model.cost,
+        image: model.image,
+        id: model.id,
+        category: model.category,
+        ingredients: model.ingredients);
   }
 
   static ProductModel toModel(ProductEntity entity) {
@@ -20,7 +20,8 @@ abstract class ProductMapper {
       cost: entity.cost,
       image: entity.image,
       id: entity.id,
-        category: entity.category
+      category: entity.category,
+      ingredients: entity.ingredients,
     );
   }
 }

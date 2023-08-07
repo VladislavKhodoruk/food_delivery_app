@@ -20,5 +20,6 @@ abstract class _$AppRouter extends RootStackRouter {
     ...CartModule().pagesMap,
     ...SettingsModule().pagesMap,
     ...OrderHistoryModule().pagesMap,
+    ...DetailsModule().pagesMap,
   };
 }

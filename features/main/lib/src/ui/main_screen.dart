@@ -2,6 +2,7 @@ import 'package:cart/cart.gm.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:home/home.gm.dart';
+import 'package:main/src/ui/main_bottom_navigation_bar.dart';
 import 'package:order_history/order_history.gm.dart';
 import 'package:settings/settings.dart';
 
@@ -14,22 +15,15 @@ class MainScreen extends StatelessWidget {
     return AutoTabsScaffold(
       routes: const <PageRouteInfo>[
         HomeRoute(),
-        CartRoute(),
         SettingsRoute(),
         OrderHistoryRoute(),
+        CartRoute(),
       ],
       animationDuration: const Duration(microseconds: 0),
       bottomNavigationBuilder: (BuildContext context, TabsRouter router) {
-        return BottomNavigationBar(
+        return MainBottomNavigationBar(
           currentIndex: router.activeIndex,
           onTap: (int index) => router.setActiveIndex(index),
-          type: BottomNavigationBarType.fixed,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'a'),
-            BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'b'),
-            BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'b'),
-            BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'b'),
-          ],
         );
       },
     );

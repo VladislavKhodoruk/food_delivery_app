@@ -13,6 +13,7 @@ class ProductEntity with _$ProductEntity {
     required double cost,
     required String image,
     required String category,
+    required List<String> ingredients,
   }) = _ProductEntity;
 
   factory ProductEntity.fromFirebase(

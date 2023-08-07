@@ -42,3 +42,5 @@ flutter:
         - asset: assets/fonts/Cabin-Bold.ttf
         - asset: assets/fonts/Cabin-SemiBold.ttf
         - asset: assets/fonts/Cabin-Medium.ttf
+  assets:
+    - assets/translations/

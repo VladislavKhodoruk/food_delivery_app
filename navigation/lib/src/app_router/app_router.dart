@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:cart/cart.dart';
+import 'package:details/details.dart';
 import 'package:main/main.dart';
 import 'package:home/home.dart';
 import 'package:order_history/order_history.dart';
@@ -13,7 +14,8 @@ part 'app_router.gr.dart';
     HomeModule,
     CartModule,
     SettingsModule,
-    OrderHistoryModule
+    OrderHistoryModule,
+    DetailsModule,
   ],
   replaceInRouteName: 'Screen,Route',
 )
@@ -24,15 +26,32 @@ class AppRouter extends _$AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
-      path: '/',
+      path: '/main',
       page: MainRoute.page,
       initial: true,
       children: [
-        AutoRoute(path: 'home', page: HomeRoute.page, initial: true),
-        AutoRoute(path: 'cart', page: CartRoute.page),
-        AutoRoute(path: 'settings', page: SettingsRoute.page),
-        AutoRoute(path: 'order_history', page: OrderHistoryRoute.page),
+        AutoRoute(
+          path: 'home',
+          page: HomeRoute.page,
+          initial: true,
+        ),
+        AutoRoute(
+          path: 'cart',
+          page: CartRoute.page,
+        ),
+        AutoRoute(
+          path: 'settings',
+          page: SettingsRoute.page,
+        ),
+        AutoRoute(
+          path: 'order_history',
+          page: OrderHistoryRoute.page,
+        ),
       ],
+    ),
+    AutoRoute(
+      path: '/details',
+      page: DetailsRoute.page,
     ),
   ];
 }

@@ -22,6 +22,7 @@ mixin _$ProductModel {
   double get cost => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
+  List<String> get ingredients => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductModelCopyWith<ProductModel> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $ProductModelCopyWith<$Res> {
       String description,
       double cost,
       String image,
-      String category});
+      String category,
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? cost = null,
     Object? image = null,
     Object? category = null,
+    Object? ingredients = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -88,6 +91,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -106,7 +113,8 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String description,
       double cost,
       String image,
-      String category});
+      String category,
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -126,6 +134,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? cost = null,
     Object? image = null,
     Object? category = null,
+    Object? ingredients = null,
   }) {
     return _then(_$_ProductModel(
       name: null == name
@@ -152,6 +161,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
+      ingredients: null == ingredients
+          ? _value._ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -165,7 +178,9 @@ class _$_ProductModel implements _ProductModel {
       required this.description,
       required this.cost,
       required this.image,
-      required this.category});
+      required this.category,
+      required final List<String> ingredients})
+      : _ingredients = ingredients;
 
   @override
   final String name;
@@ -179,10 +194,17 @@ class _$_ProductModel implements _ProductModel {
   final String image;
   @override
   final String category;
+  final List<String> _ingredients;
+  @override
+  List<String> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredients);
+  }
 
   @override
   String toString() {
-    return 'ProductModel(name: $name, id: $id, description: $description, cost: $cost, image: $image, category: $category)';
+    return 'ProductModel(name: $name, id: $id, description: $description, cost: $cost, image: $image, category: $category, ingredients: $ingredients)';
   }
 
   @override
@@ -197,12 +219,14 @@ class _$_ProductModel implements _ProductModel {
             (identical(other.cost, cost) || other.cost == cost) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.category, category) ||
-                other.category == category));
+                other.category == category) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredients, _ingredients));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, id, description, cost, image, category);
+  int get hashCode => Object.hash(runtimeType, name, id, description, cost,
+      image, category, const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +242,8 @@ abstract class _ProductModel implements ProductModel {
       required final String description,
       required final double cost,
       required final String image,
-      required final String category}) = _$_ProductModel;
+      required final String category,
+      required final List<String> ingredients}) = _$_ProductModel;
 
   @override
   String get name;
@@ -232,6 +257,8 @@ abstract class _ProductModel implements ProductModel {
   String get image;
   @override
   String get category;
+  @override
+  List<String> get ingredients;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

@@ -253,13 +253,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  details:
-    dependency: transitive
-    description:
-      path: "../details"
-      relative: true
-    source: path
-    version: "0.0.1"
   dio:
     dependency: transitive
     description:
@@ -269,7 +262,7 @@ packages:
     source: hosted
     version: "5.3.2"
   domain:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../../domain"
       relative: true
@@ -612,6 +605,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  order_history:
+    dependency: transitive
+    description:
+      path: "../order_history"
+      relative: true
+    source: path
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:

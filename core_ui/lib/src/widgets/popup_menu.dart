@@ -1,6 +1,4 @@
-import 'package:core/extensions/extensions.dart';
-import 'package:core/constants/app_text_constants.dart';
-import 'package:core/typedefs/typedefs.dart';
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +40,9 @@ class PopupMenu extends StatelessWidget {
             (String item) => PopupMenuItem<String>(
               value: item,
               child: Text(
-                item.isNotEmpty ? item.capitalize() : AppTextConstants.all,
+                item.isNotEmpty
+                    ? item.capitalize()
+                    : LocaleKeys.mainPage_homeScreen_allProductsMenuItem.tr(),
                 style: textTheme.bodyMedium,
               ),
             ),

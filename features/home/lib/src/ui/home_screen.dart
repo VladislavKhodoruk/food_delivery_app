@@ -1,14 +1,11 @@
-import 'package:core/constants/app_text_constants.dart';
 import 'package:core/core.dart';
-import 'package:core/di/app_di.dart';
-import 'package:core/enums/api_enums.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
-import 'package:domain/usecases/usecases.dart';
 import 'package:flutter/material.dart';
-import 'package:home/src/ui/main_bottom_navigation_bar.dart';
-import 'product_item.dart';
+import 'package:navigation/navigation.dart';
+
 import '../bloc/home_bloc.dart';
+import 'product_item.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -33,34 +30,34 @@ class _HomeScreenState extends State<HomeScreen> {
 
           return SafeArea(
             child: Scaffold(
-                backgroundColor: AppColors.white,
-                appBar: AppBar(
-                  toolbarHeight: 65,
-                  title: const Text(AppTextConstants.appName),
-                  actions: <Widget>[
-                    Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: PopupMenu(
-                        selectedOption: state.category,
-                        onPressed: (String category) =>
-                            (bloc.add(SetCategoryEvent(category))),
-                        menuOptions: state.products
-                            .map((ProductModel product) => product.category)
-                            .toList(),
-                      ),
+              backgroundColor: AppColors.white,
+              appBar: AppBar(
+                toolbarHeight: 65,
+                title: const Text(LocaleKeys.appName).tr(),
+                actions: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: PopupMenu(
+                      selectedOption: state.category,
+                      onPressed: (String category) =>
+                          (bloc.add(SetCategoryEvent(category))),
+                      menuOptions: state.products
+                          .map((ProductModel product) => product.category)
+                          .toList(),
                     ),
-                  ],
-                ),
-                body: Container(
-                  color: AppColors.blueLight,
-                  child: RefreshIndicator(
-                    onRefresh: () {
-                      return Future<void>(() => bloc.add(LoadHomeEvent()));
-                    },
-                    child: _content(state, textTheme),
                   ),
+                ],
+              ),
+              body: Container(
+                color: AppColors.blueLight,
+                child: RefreshIndicator(
+                  onRefresh: () {
+                    return Future<void>(() => bloc.add(LoadHomeEvent()));
+                  },
+                  child: _content(state, textTheme),
                 ),
-                bottomNavigationBar: const MainBottomNavigationBar()),
+              ),
+            ),
           );
         },
       ),
@@ -74,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (state.loadingStatus == LoadingStatus.error) {
       return Center(
         child: Text(
-          state.errorMessage!,
+          state.errorMessage,
           style: textTheme.headlineLarge,
         ),
       );
@@ -94,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if (state.filteredProducts.isEmpty) {
         return Center(
           child: Text(
-            AppTextConstants.emptyView,
+            LocaleKeys.mainPage_homeScreen_noProducts.tr(),
             style: textTheme.headlineLarge,
           ),
         );
@@ -104,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
             crossAxisCount: 2,
-            childAspectRatio: 0.9,
+            childAspectRatio: 0.88,
           ),
           padding: const EdgeInsets.all(18),
           itemCount: state.filteredProducts.length,
@@ -112,10 +109,17 @@ class _HomeScreenState extends State<HomeScreen> {
             BuildContext context,
             int index,
           ) {
-            return ProductItem(
-              productItem: state.filteredProducts[index],
-              key: ValueKey(
-                state.filteredProducts[index].id,
+            return GestureDetector(
+              onTap: () => context.router.push(
+                DetailsRoute(
+                  product: state.filteredProducts[index],
+                ),
+              ),
+              child: ProductItem(
+                productItem: state.filteredProducts[index],
+                key: ValueKey(
+                  state.filteredProducts[index].id,
+                ),
               ),
             );
           },
