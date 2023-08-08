@@ -3,6 +3,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
+
 import '../bloc/home_bloc.dart';
 import 'popup_menu.dart';
 import 'product_item.dart';
@@ -25,7 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
         fetchAllProductsUseCase: appLocator.get<FetchAllProductsUseCase>(),
       ),
       child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (BuildContext context, HomeState state) {
+        builder: (
+          BuildContext context,
+          HomeState state,
+        ) {
           final bloc = context.read<HomeBloc>();
 
           return SafeArea(
@@ -33,16 +37,23 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: AppColors.white,
               appBar: AppBar(
                 toolbarHeight: 65,
-                title: const Text(LocaleKeys.appName).tr(),
+                title: const Text(
+                  LocaleKeys.appName,
+                ).tr(),
                 actions: <Widget>[
                   Container(
-                    padding: const EdgeInsets.only(right: 4),
+                    padding: const EdgeInsets.only(
+                      right: 4,
+                    ),
                     child: PopupMenu(
                       selectedOption: state.category,
-                      onPressed: (String category) =>
-                          (bloc.add(SetCategoryEvent(category))),
+                      onPressed: (String category) => (bloc.add(
+                        SetCategoryEvent(category),
+                      )),
                       menuOptions: state.products
-                          .map((ProductModel product) => product.category)
+                          .map(
+                            (ProductModel product) => product.category,
+                          )
                           .toList(),
                     ),
                   ),
@@ -53,7 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(18),
                 child: RefreshIndicator(
                   onRefresh: () {
-                    return Future<void>(() => bloc.add(LoadHomeEvent()));
+                    return Future<void>(
+                      () => bloc.add(
+                        LoadHomeEvent(),
+                      ),
+                    );
                   },
                   child: _content(state, textTheme),
                 ),
@@ -83,7 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 50,
           height: 50,
           child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(AppColors.red),
+            valueColor: AlwaysStoppedAnimation<Color>(
+              AppColors.red,
+            ),
           ),
         ),
       );

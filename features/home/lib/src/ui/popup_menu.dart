@@ -34,7 +34,10 @@ class PopupMenu extends StatelessWidget {
       surfaceTintColor: Colors.transparent,
       shadowColor: AppColors.black,
       elevation: 5,
-      icon: const Icon(Icons.menu_rounded, color: AppColors.red),
+      icon: const Icon(
+        Icons.menu_rounded,
+        color: AppColors.red,
+      ),
       itemBuilder: (BuildContext context) => getOptions()
           .map(
             (String item) => PopupMenuItem<String>(

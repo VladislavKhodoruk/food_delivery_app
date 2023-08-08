@@ -33,7 +33,10 @@ class MainBottomNavigationBar extends StatelessWidget {
             Icons.settings_rounded,
             color: AppColors.gray,
           ),
-          activeIcon: const Icon(Icons.settings_rounded, color: AppColors.red),
+          activeIcon: const Icon(
+            Icons.settings_rounded,
+            color: AppColors.red,
+          ),
           label: LocaleKeys.mainPage_settingsScreen_name.tr(),
         ),
         BottomNavigationBarItem(

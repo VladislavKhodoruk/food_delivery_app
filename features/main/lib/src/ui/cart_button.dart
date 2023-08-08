@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 
 class CartButton extends StatelessWidget {
   bool? isActive;
@@ -22,20 +22,28 @@ class CartButton extends StatelessWidget {
         Positioned(
           left: 57,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 2,
+            ),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: AppColors.white,
-                boxShadow: const <BoxShadow>[
-                  BoxShadow(
-                    color: AppColors.shadowGrayLight,
-                    spreadRadius: 0,
-                    blurRadius: 5,
-                    offset: Offset(0, 2), // changes position of shadow
-                  ),
-                ],
-                border: Border.all(color: AppColors.gray)),
-            child: Text('20.75\$', style: textTheme.labelSmall),
+              borderRadius: BorderRadius.circular(7),
+              color: AppColors.white,
+              boxShadow: const <BoxShadow>[
+                BoxShadow(
+                  color: AppColors.shadowGrayLight,
+                  spreadRadius: 0,
+                  blurRadius: 5,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
+              border: Border.all(
+                color: AppColors.gray,
+              ),
+            ),
+            child: Text(
+              '20.75\$',
+              style: textTheme.labelSmall,
+            ),
           ),
         )
       ],

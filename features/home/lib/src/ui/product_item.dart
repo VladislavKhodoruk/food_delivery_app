@@ -1,7 +1,7 @@
 import 'package:core/extensions/extensions.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 
 class ProductItem extends StatefulWidget {
   final ProductModel productItem;
@@ -72,9 +72,11 @@ class _ProductItemState extends State<ProductItem> {
                       height: 28,
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       margin: const EdgeInsets.only(right: 5),
-                      child: Text('${widget.productItem.cost}\$',
-                          style: textTheme.bodyMedium
-                              ?.copyWith(color: AppColors.white)),
+                      child: Text(
+                        '${widget.productItem.cost}\$',
+                        style: textTheme.bodyMedium
+                            ?.copyWith(color: AppColors.white),
+                      ),
                     ),
                     if (_count > 0)
                       Row(
@@ -96,9 +98,11 @@ class _ProductItemState extends State<ProductItem> {
                             margin: const EdgeInsets.only(right: 5),
                             height: 28,
                             width: 28,
-                            child: Text(_count.toString(),
-                                style: textTheme.bodyMedium
-                                    ?.copyWith(color: AppColors.white)),
+                            child: Text(
+                              _count.toString(),
+                              style: textTheme.bodyMedium
+                                  ?.copyWith(color: AppColors.white),
+                            ),
                           ),
                         ],
                       ),

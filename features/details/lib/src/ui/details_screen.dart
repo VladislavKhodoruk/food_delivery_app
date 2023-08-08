@@ -58,9 +58,11 @@ class DetailsScreen extends StatelessWidget {
                                   height: 30,
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 5),
-                                  child: Text('${product.cost}\$',
-                                      style: textTheme.headlineMedium
-                                          ?.copyWith(color: AppColors.white)),
+                                  child: Text(
+                                    '${product.cost}\$',
+                                    style: textTheme.headlineMedium
+                                        ?.copyWith(color: AppColors.white),
+                                  ),
                                 ),
                               ),
                             ],
@@ -121,7 +123,7 @@ class DetailsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
