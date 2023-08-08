@@ -1,15 +1,21 @@
 {
   "appName": "Food app",
   "mainPage": {
-    "bottomNavigationBar": {
-      "home": "home",
-      "settings": "settings",
-      "orderHistory": "order history",
-      "cart": "cart"
-    },
     "homeScreen": {
-      "noProducts": "No products yet...",
-      "allProductsMenuItem": "All"
+      "allProductsMenuItem": "All",
+      "name": "Home"
+    },
+    "settingsScreen": {
+      "name": "Settings"
+    },
+    "orderHistoryScreen": {
+      "name": "Order history"
+    },
+    "cartScreen": {
+      "name": "Cart"
+    },
+    "common": {
+      "noProducts": "No products yet..."
     }
   }
 }

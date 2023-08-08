@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:main/src/ui/cart_button.dart';
 
@@ -17,23 +18,41 @@ class MainBottomNavigationBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: const Icon(Icons.home_rounded),
-          label: LocaleKeys.mainPage_bottomNavigationBar_home.tr(),
+          icon: const Icon(
+            Icons.home_rounded,
+            color: AppColors.gray,
+          ),
+          activeIcon: const Icon(
+            Icons.home_rounded,
+            color: AppColors.red,
+          ),
+          label: LocaleKeys.mainPage_homeScreen_name.tr(),
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.settings_rounded),
-          label: LocaleKeys.mainPage_bottomNavigationBar_settings.tr(),
+          icon: const Icon(
+            Icons.settings_rounded,
+            color: AppColors.gray,
+          ),
+          activeIcon: const Icon(Icons.settings_rounded, color: AppColors.red),
+          label: LocaleKeys.mainPage_settingsScreen_name.tr(),
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.history_rounded),
-          label: LocaleKeys.mainPage_bottomNavigationBar_orderHistory.tr(),
+          icon: const Icon(
+            Icons.history_rounded,
+            color: AppColors.gray,
+          ),
+          activeIcon: const Icon(
+            Icons.history_rounded,
+            color: AppColors.red,
+          ),
+          label: LocaleKeys.mainPage_orderHistoryScreen_name.tr(),
         ),
         BottomNavigationBarItem(
           icon: CartButton(),
           activeIcon: CartButton(
             isActive: true,
           ),
-          label: LocaleKeys.mainPage_bottomNavigationBar_cart.tr(),
+          label: LocaleKeys.mainPage_cartScreen_name.tr(),
         ),
       ],
     );

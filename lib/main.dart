@@ -20,7 +20,7 @@ void main() async {
         Locale('be', 'BY'),
       ],
       path: 'assets/translations',
-      fallbackLocale: const Locale('be', 'BY'),
+      fallbackLocale: const Locale('en', 'US'),
       child: const FoodApp(),
     ),
   );

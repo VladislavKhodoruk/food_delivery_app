@@ -14,18 +14,24 @@ class AppTheme {
           const BottomNavigationBarThemeData(backgroundColor: AppColors.white),
       useMaterial3: true,
       primaryColor: AppColors.red,
+      dividerColor: AppColors.red,
       appBarTheme: AppBarTheme(
           toolbarHeight: 65,
           surfaceTintColor: Colors.transparent,
           titleTextStyle: AppText.cabin24Bold.copyWith(color: AppColors.red),
           centerTitle: true,
-          shadowColor: AppColors.shadowGray,
+          shadowColor: AppColors.shadowGrayDark,
           elevation: 3,
           backgroundColor: AppColors.white),
       textTheme: TextTheme(
           headlineLarge: AppText.cabin24Bold.copyWith(color: AppColors.red),
-          labelMedium: AppText.cabin16Bold,
-          bodyMedium: AppText.cabin16SemiBold.copyWith(color: AppColors.black)),
+          headlineMedium:
+              AppText.cabin20Regular.copyWith(color: AppColors.white),
+          labelLarge: AppText.cabin16Regular.copyWith(color: AppColors.black),
+          labelMedium: AppText.cabin14Bold,
+          labelSmall: AppText.cabin10SemiBold.copyWith(color: AppColors.red),
+          bodyLarge: AppText.cabin18Regular.copyWith(color: AppColors.black),
+          bodyMedium: AppText.cabin14SemiBold.copyWith(color: AppColors.black)),
     );
   }
 

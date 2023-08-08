@@ -13,10 +13,13 @@ class OrderHistoryScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         appBar: AppBar(
           toolbarHeight: 65,
-          title: const Text(LocaleKeys.appName).tr(),
+          title: const Text(LocaleKeys.mainPage_orderHistoryScreen_name).tr(),
         ),
-        body: const Center(
-          child: Text('Order History screen'),
+        body: Container(
+          color: AppColors.blueLight,
+          child: const Center(
+            child: Text('Order History screen'),
+          ),
         ),
       ),
     );

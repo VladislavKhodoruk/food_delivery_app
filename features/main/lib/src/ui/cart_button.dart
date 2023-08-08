@@ -10,36 +10,35 @@ class CartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Container(
-      padding: const EdgeInsets.all(5),
-      decoration: const BoxDecoration(
-        color: AppColors.white,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: AppColors.shadowBlue,
-            spreadRadius: 0,
-            blurRadius: 8,
-            offset: Offset(0, 2), // changes position of shadow
-          ),
-        ],
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(
+    return Stack(
+      children: <Widget>[
+        Container(
+          alignment: AlignmentDirectional.center,
+          child: Icon(
             Icons.shopping_bag_outlined,
-            color: isActive == true ? AppColors.red : null,
+            color: isActive == true ? AppColors.red : AppColors.gray,
           ),
-          const SizedBox(
-            width: 10,
+        ),
+        Positioned(
+          left: 57,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: AppColors.white,
+                boxShadow: const <BoxShadow>[
+                  BoxShadow(
+                    color: AppColors.shadowGrayLight,
+                    spreadRadius: 0,
+                    blurRadius: 5,
+                    offset: Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                border: Border.all(color: AppColors.gray)),
+            child: Text('20.75\$', style: textTheme.labelSmall),
           ),
-          Text('20\$', style: textTheme.bodyMedium)
-        ],
-      ),
+        )
+      ],
     );
   }
 }

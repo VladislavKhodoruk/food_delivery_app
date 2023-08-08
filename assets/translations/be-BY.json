@@ -1,15 +1,21 @@
 {
   "appName": "Food app",
   "mainPage": {
-    "bottomNavigationBar": {
-      "home": "Дом",
-      "settings": "Наладжванне",
-      "orderHistory": "Гісторыя замовы",
-      "cart": "Кошык"
-    },
     "homeScreen": {
-      "noProducts": "Прадуктаў пакуль няма...",
-      "allProductsMenuItem": "Усе"
+      "allProductsMenuItem": "Усе",
+      "name": "Дом"
+    },
+    "settingsScreen": {
+      "name": "Наладжванне"
+    },
+    "orderHistoryScreen": {
+      "name": "Гісторыя замовы"
+    },
+    "cartScreen": {
+      "name": "Кошык"
+    },
+    "common": {
+      "noProducts": "Прадуктаў пакуль няма..."
     }
   }
 }

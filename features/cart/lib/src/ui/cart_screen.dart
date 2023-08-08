@@ -13,10 +13,13 @@ class CartScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         appBar: AppBar(
           toolbarHeight: 65,
-          title: const Text(LocaleKeys.appName).tr(),
+          title: const Text(LocaleKeys.mainPage_cartScreen_name).tr(),
         ),
-        body: const Center(
-          child: Text('Cart screen'),
+        body: Container(
+          color: AppColors.blueLight,
+          child: const Center(
+            child: Text('Cart screen'),
+          ),
         ),
       ),
     );

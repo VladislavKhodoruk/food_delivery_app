@@ -3,8 +3,8 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
-
 import '../bloc/home_bloc.dart';
+import 'popup_menu.dart';
 import 'product_item.dart';
 
 @RoutePage()
@@ -50,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               body: Container(
                 color: AppColors.blueLight,
+                padding: const EdgeInsets.all(18),
                 child: RefreshIndicator(
                   onRefresh: () {
                     return Future<void>(() => bloc.add(LoadHomeEvent()));
@@ -91,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if (state.filteredProducts.isEmpty) {
         return Center(
           child: Text(
-            LocaleKeys.mainPage_homeScreen_noProducts.tr(),
+            LocaleKeys.mainPage_common_noProducts.tr(),
             style: textTheme.headlineLarge,
           ),
         );
@@ -103,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisCount: 2,
             childAspectRatio: 0.88,
           ),
-          padding: const EdgeInsets.all(18),
           itemCount: state.filteredProducts.length,
           itemBuilder: (
             BuildContext context,
