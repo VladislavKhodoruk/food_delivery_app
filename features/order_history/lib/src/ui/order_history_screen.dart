@@ -8,18 +8,16 @@ class OrderHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        appBar: AppBar(
-          toolbarHeight: 65,
-          title: const Text(LocaleKeys.mainPage_orderHistoryScreen_name).tr(),
-        ),
-        body: Container(
-          color: AppColors.blueLight,
-          child: const Center(
-            child: Text('Order History screen'),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 65,
+        title: const Text(
+          LocaleKeys.mainPage_orderHistoryScreen_name,
+        ).tr(),
+      ),
+      body: const Wrapper(
+        Center(
+          child: Text('Order History screen'),
         ),
       ),
     );

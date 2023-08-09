@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class PopupMenu extends StatelessWidget {
@@ -23,20 +22,20 @@ class PopupMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ThemeData theme = Theme.of(context);
 
     return PopupMenuButton<String>(
       initialValue: selectedOption,
       onSelected: (String item) {
         onPressed(item);
       },
-      color: AppColors.white,
+      color: theme.colorScheme.secondaryContainer,
       surfaceTintColor: Colors.transparent,
-      shadowColor: AppColors.black,
+      shadowColor: theme.colorScheme.tertiary,
       elevation: 5,
-      icon: const Icon(
+      icon: Icon(
         Icons.menu_rounded,
-        color: AppColors.red,
+        color: theme.colorScheme.primary,
       ),
       itemBuilder: (BuildContext context) => getOptions()
           .map(
@@ -46,7 +45,7 @@ class PopupMenu extends StatelessWidget {
                 item.isNotEmpty
                     ? item.capitalize()
                     : LocaleKeys.mainPage_homeScreen_allProductsMenuItem.tr(),
-                style: textTheme.bodyMedium,
+                style: theme.textTheme.bodyMedium,
               ),
             ),
           )

@@ -10,7 +10,11 @@ import 'product_item.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -19,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ThemeData theme = Theme.of(context);
 
     return BlocProvider<HomeBloc>(
       create: (BuildContext context) => HomeBloc(
@@ -30,48 +34,42 @@ class _HomeScreenState extends State<HomeScreen> {
           BuildContext context,
           HomeState state,
         ) {
-          final bloc = context.read<HomeBloc>();
+          final HomeBloc bloc = context.read<HomeBloc>();
 
-          return SafeArea(
-            child: Scaffold(
-              backgroundColor: AppColors.white,
-              appBar: AppBar(
-                toolbarHeight: 65,
-                title: const Text(
-                  LocaleKeys.appName,
-                ).tr(),
-                actions: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.only(
-                      right: 4,
-                    ),
-                    child: PopupMenu(
-                      selectedOption: state.category,
-                      onPressed: (String category) => (bloc.add(
-                        SetCategoryEvent(category),
-                      )),
-                      menuOptions: state.products
-                          .map(
-                            (ProductModel product) => product.category,
-                          )
-                          .toList(),
-                    ),
+          return Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 65,
+              title: const Text(
+                LocaleKeys.appName,
+              ).tr(),
+              actions: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: PopupMenu(
+                    selectedOption: state.category,
+                    onPressed: (String category) => (bloc.add(
+                      SetCategoryEvent(category),
+                    )),
+                    menuOptions: state.products
+                        .map(
+                          (ProductModel product) => product.category,
+                        )
+                        .toList(),
                   ),
-                ],
-              ),
-              body: Container(
-                color: AppColors.blueLight,
-                padding: const EdgeInsets.all(18),
-                child: RefreshIndicator(
-                  onRefresh: () {
-                    return Future<void>(
-                      () => bloc.add(
-                        LoadHomeEvent(),
-                      ),
-                    );
-                  },
-                  child: _content(state, textTheme),
                 ),
+              ],
+            ),
+            body: Wrapper(
+              RefreshIndicator(
+                backgroundColor: theme.colorScheme.secondary,
+                onRefresh: () {
+                  return Future<void>(
+                    () => bloc.add(
+                      LoadHomeEvent(),
+                    ),
+                  );
+                },
+                child: _content(state, theme),
               ),
             ),
           );
@@ -82,24 +80,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _content(
     HomeState state,
-    TextTheme textTheme,
+    ThemeData theme,
   ) {
     if (state.loadingStatus == LoadingStatus.error) {
       return Center(
         child: Text(
           state.errorMessage,
-          style: textTheme.headlineLarge,
+          style: theme.textTheme.headlineLarge,
         ),
       );
     }
     if (state.loadingStatus == LoadingStatus.loading) {
-      return const Center(
+      return Center(
         child: SizedBox(
           width: 50,
           height: 50,
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(
-              AppColors.red,
+              theme.colorScheme.primary,
             ),
           ),
         ),
@@ -110,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return Center(
           child: Text(
             LocaleKeys.mainPage_common_noProducts.tr(),
-            style: textTheme.headlineLarge,
+            style: theme.textTheme.headlineLarge,
           ),
         );
       } else {

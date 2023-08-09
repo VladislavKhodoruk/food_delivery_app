@@ -6,7 +6,11 @@
       "name": "Home"
     },
     "settingsScreen": {
-      "name": "Settings"
+      "name": "Settings",
+      "theme": "Color theme",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "language": "Language"
     },
     "orderHistoryScreen": {
       "name": "Order history"

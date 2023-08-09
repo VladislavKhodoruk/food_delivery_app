@@ -6,7 +6,11 @@
       "name": "Дом"
     },
     "settingsScreen": {
-      "name": "Наладжванне"
+      "name": "Наладжванне",
+      "theme": "Каляровая тэма",
+      "lightTheme": "Светлая",
+      "darkTheme": "Цёмная",
+      "language": "Мова"
     },
     "orderHistoryScreen": {
       "name": "Гісторыя замовы"

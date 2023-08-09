@@ -4,21 +4,24 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
+  const CartScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        appBar: AppBar(
-          toolbarHeight: 65,
-          title: const Text(LocaleKeys.mainPage_cartScreen_name).tr(),
-        ),
-        body: Container(
-          color: AppColors.blueLight,
-          child: const Center(
-            child: Text('Cart screen'),
+    return Scaffold(
+      backgroundColor: AppColors.blueLight,
+      appBar: AppBar(
+        toolbarHeight: 65,
+        title: const Text(
+          LocaleKeys.mainPage_cartScreen_name,
+        ).tr(),
+      ),
+      body: const Wrapper(
+        Center(
+          child: Text(
+            'Cart screen',
           ),
         ),
       ),

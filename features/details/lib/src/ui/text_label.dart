@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class TextLabel extends StatelessWidget {
@@ -9,7 +8,7 @@ class TextLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ThemeData themeData = Theme.of(context);
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -17,16 +16,16 @@ class TextLabel extends StatelessWidget {
         horizontal: 10,
       ),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: themeData.colorScheme.background,
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
           width: 1,
-          color: AppColors.blue,
+          color: themeData.colorScheme.tertiary,
         ),
       ),
       child: Text(
         text.capitalize(),
-        style: textTheme.labelLarge,
+        style: themeData.textTheme.labelLarge,
       ),
     );
   }
