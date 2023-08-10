@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CartButton extends StatelessWidget {
-  bool? isActive;
+  final bool isActive;
 
-  CartButton({
+  const CartButton({
     super.key,
     this.isActive = false,
   });
@@ -18,9 +18,7 @@ class CartButton extends StatelessWidget {
           alignment: AlignmentDirectional.center,
           child: Icon(
             Icons.shopping_bag_outlined,
-            color: isActive == true
-                ? theme.colorScheme.primary
-                : theme.iconTheme.color,
+            color: isActive ? theme.colorScheme.primary : theme.iconTheme.color,
           ),
         ),
         Positioned(

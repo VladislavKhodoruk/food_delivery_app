@@ -11,7 +11,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.blueLight,
       appBar: AppBar(
         toolbarHeight: 65,
         title: const Text(

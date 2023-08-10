@@ -22,7 +22,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _loadProducts(
-      LoadHomeEvent event, Emitter<HomeState> emit) async {
+    LoadHomeEvent event,
+    Emitter<HomeState> emit,
+  ) async {
     emit(
       state.copyWith(
         loadingStatus: LoadingStatus.loading,
@@ -59,7 +61,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _filterProducts(
-      FilterHomeEvent event, Emitter<HomeState> emit) async {
+    FilterHomeEvent event,
+    Emitter<HomeState> emit,
+  ) async {
     if (state.category.isEmpty) {
       emit(
         state.copyWith(

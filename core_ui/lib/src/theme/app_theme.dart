@@ -8,26 +8,26 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSwatch().copyWith(
-        primary: AppColors.red,
+        primary: AppColors.smoulderingRed,
         secondary: AppColors.white,
         secondaryContainer: AppColors.white,
-        tertiary: AppColors.blue.withOpacity(0.5),
+        tertiary: AppColors.costumeBlue.withOpacity(0.5),
         background: AppColors.white,
-        surfaceTint: AppColors.gray.withOpacity(0.7),
+        surfaceTint: AppColors.knightArmor.withOpacity(0.7),
       ),
       iconTheme: const IconThemeData(
-        color: AppColors.gray,
+        color: AppColors.knightArmor,
       ),
-      scaffoldBackgroundColor: AppColors.blueLight,
+      scaffoldBackgroundColor: AppColors.aircraftWhite,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.white,
       ),
       useMaterial3: true,
-      primaryColor: AppColors.red,
-      dividerColor: AppColors.red,
+      primaryColor: AppColors.smoulderingRed,
+      dividerColor: AppColors.smoulderingRed,
       cardTheme: CardTheme(
         color: AppColors.white,
-        shadowColor: AppColors.blue.withOpacity(
+        shadowColor: AppColors.costumeBlue.withOpacity(
           0.3,
         ),
       ),
@@ -35,10 +35,10 @@ class AppTheme {
         toolbarHeight: 65,
         surfaceTintColor: Colors.transparent,
         titleTextStyle: AppText.cabin24Bold.copyWith(
-          color: AppColors.red,
+          color: AppColors.smoulderingRed,
         ),
         centerTitle: true,
-        shadowColor: AppColors.gray.withOpacity(
+        shadowColor: AppColors.knightArmor.withOpacity(
           0.3,
         ),
         elevation: 3,
@@ -46,34 +46,33 @@ class AppTheme {
       ),
       textTheme: TextTheme(
         headlineLarge: AppText.cabin24Bold.copyWith(
-          color: AppColors.red,
+          color: AppColors.smoulderingRed,
         ),
         headlineMedium: AppText.cabin20Regular.copyWith(
           color: AppColors.white,
         ),
-        labelLarge: AppText.cabin16Regular.copyWith(
-          color: AppColors.blackLight,
+        labelLarge: AppText.cabin14Regular.copyWith(
+          color: AppColors.shoeWax,
         ),
-        labelMedium: AppText.cabin14Bold,
         labelSmall: AppText.cabin10SemiBold.copyWith(
-          color: AppColors.red,
+          color: AppColors.smoulderingRed,
         ),
-        bodyLarge: AppText.cabin18Regular.copyWith(
-          color: AppColors.blackLight,
+        bodyLarge: AppText.cabin14Regular.copyWith(
+          color: AppColors.shoeWax,
         ),
         bodyMedium: AppText.cabin14SemiBold.copyWith(
-          color: AppColors.blackLight,
+          color: AppColors.shoeWax,
         ),
       ),
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.all(
-          AppColors.red,
+          AppColors.smoulderingRed,
         ),
         trackColor: MaterialStateProperty.all(
           AppColors.white,
         ),
         trackOutlineColor: MaterialStateProperty.all(
-          AppColors.blue.withOpacity(
+          AppColors.costumeBlue.withOpacity(
             0.25,
           ),
         ),
@@ -84,55 +83,54 @@ class AppTheme {
   static ThemeData get darkTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSwatch().copyWith(
-        primary: AppColors.orange,
+        primary: AppColors.heatWave,
         secondary: AppColors.white,
-        secondaryContainer: AppColors.black,
-        tertiary: AppColors.black,
-        background: AppColors.grayDark,
-        surfaceTint: AppColors.gray.withOpacity(
+        secondaryContainer: AppColors.eerieBlack,
+        tertiary: AppColors.eerieBlack,
+        background: AppColors.blackLacquer,
+        surfaceTint: AppColors.knightArmor.withOpacity(
           0.7,
         ),
       ),
       iconTheme: const IconThemeData(
-        color: AppColors.gray,
+        color: AppColors.knightArmor,
       ),
-      scaffoldBackgroundColor: AppColors.blackLight,
+      scaffoldBackgroundColor: AppColors.shoeWax,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: AppColors.black,
+        backgroundColor: AppColors.eerieBlack,
       ),
       useMaterial3: true,
-      primaryColor: AppColors.orange,
-      dividerColor: AppColors.orange,
+      primaryColor: AppColors.heatWave,
+      dividerColor: AppColors.heatWave,
       cardTheme: CardTheme(
-        color: AppColors.grayDark,
-        shadowColor: AppColors.black.withOpacity(
+        color: AppColors.blackLacquer,
+        shadowColor: AppColors.eerieBlack.withOpacity(
           1,
         ),
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: 65,
         surfaceTintColor: Colors.transparent,
-        titleTextStyle: AppText.cabin24Bold.copyWith(color: AppColors.orange),
+        titleTextStyle: AppText.cabin24Bold.copyWith(color: AppColors.heatWave),
         centerTitle: true,
-        shadowColor: AppColors.black,
+        shadowColor: AppColors.eerieBlack,
         elevation: 3,
-        backgroundColor: AppColors.black,
+        backgroundColor: AppColors.eerieBlack,
       ),
       textTheme: TextTheme(
         headlineLarge: AppText.cabin24Bold.copyWith(
-          color: AppColors.orange,
+          color: AppColors.heatWave,
         ),
         headlineMedium: AppText.cabin20Regular.copyWith(
-          color: AppColors.black,
+          color: AppColors.eerieBlack,
         ),
-        labelLarge: AppText.cabin16Regular.copyWith(
-          color: AppColors.grayLight,
+        labelLarge: AppText.cabin14Regular.copyWith(
+          color: AppColors.christmasSilver,
         ),
-        labelMedium: AppText.cabin14Bold,
         labelSmall: AppText.cabin10SemiBold.copyWith(
-          color: AppColors.orange,
+          color: AppColors.heatWave,
         ),
-        bodyLarge: AppText.cabin18Regular.copyWith(
+        bodyLarge: AppText.cabin14Regular.copyWith(
           color: AppColors.white,
         ),
         bodyMedium: AppText.cabin14SemiBold.copyWith(
@@ -141,13 +139,13 @@ class AppTheme {
       ),
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.all(
-          AppColors.orange,
+          AppColors.heatWave,
         ),
         trackColor: MaterialStateProperty.all(
-          AppColors.grayDark,
+          AppColors.blackLacquer,
         ),
         trackOutlineColor: MaterialStateProperty.all(
-          AppColors.black,
+          AppColors.eerieBlack,
         ),
       ),
     );

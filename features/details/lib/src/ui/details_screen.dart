@@ -9,8 +9,8 @@ class DetailsScreen extends StatelessWidget {
   final ProductModel product;
 
   const DetailsScreen({
-    super.key,
     required this.product,
+    super.key,
   });
 
   @override
@@ -106,7 +106,8 @@ class DetailsScreen extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: GestureDetector(
-                      onTap: () => (null),
+                      //TODO: implement function
+                      onTap: () => (),
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 15),
                         height: 46,

@@ -1,16 +1,18 @@
 import 'package:domain/models/product/product_model.dart';
+
 import '../entity/product/product_entity.dart';
 
 abstract class ProductMapper {
   static ProductEntity toEntity(ProductModel model) {
     return ProductEntity(
-        name: model.name,
-        description: model.description,
-        cost: model.cost,
-        image: model.image,
-        id: model.id,
-        category: model.category,
-        ingredients: model.ingredients);
+      name: model.name,
+      description: model.description,
+      cost: model.cost,
+      image: model.image,
+      id: model.id,
+      category: model.category,
+      ingredients: model.ingredients,
+    );
   }
 
   static ProductModel toModel(ProductEntity entity) {

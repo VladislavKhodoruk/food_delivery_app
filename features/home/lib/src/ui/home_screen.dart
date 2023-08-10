@@ -47,9 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(right: 4),
                   child: PopupMenu(
                     selectedOption: state.category,
-                    onPressed: (String category) => (bloc.add(
-                      SetCategoryEvent(category),
-                    )),
+                    onPressed: (String category) => {
+                      bloc.add(
+                        SetCategoryEvent(category),
+                      ),
+                    },
                     menuOptions: state.products
                         .map(
                           (ProductModel product) => product.category,
