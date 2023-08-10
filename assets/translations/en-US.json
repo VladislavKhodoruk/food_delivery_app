@@ -1,0 +1,25 @@
+{
+  "appName": "Food app",
+  "mainPage": {
+    "homeScreen": {
+      "allProductsMenuItem": "All",
+      "name": "Home"
+    },
+    "settingsScreen": {
+      "name": "Settings",
+      "theme": "Color theme",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "language": "Language"
+    },
+    "orderHistoryScreen": {
+      "name": "Order history"
+    },
+    "cartScreen": {
+      "name": "Cart"
+    },
+    "common": {
+      "noProducts": "No products yet..."
+    }
+  }
+}

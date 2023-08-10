@@ -1,0 +1,25 @@
+{
+  "appName": "Food app",
+  "mainPage": {
+    "homeScreen": {
+      "allProductsMenuItem": "Усе",
+      "name": "Дом"
+    },
+    "settingsScreen": {
+      "name": "Наладжванне",
+      "theme": "Каляровая тэма",
+      "lightTheme": "Светлая",
+      "darkTheme": "Цёмная",
+      "language": "Мова"
+    },
+    "orderHistoryScreen": {
+      "name": "Гісторыя замовы"
+    },
+    "cartScreen": {
+      "name": "Кошык"
+    },
+    "common": {
+      "noProducts": "Прадуктаў пакуль няма..."
+    }
+  }
+}

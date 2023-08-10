@@ -11,5 +11,6 @@ class ProductModel with _$ProductModel {
     required double cost,
     required String image,
     required String category,
+    required List<String> ingredients,
   }) = _ProductModel;
 }

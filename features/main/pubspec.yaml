@@ -1,0 +1,34 @@
+name: main
+description: A new Flutter package project.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  core:
+    path: ../../core
+  core_ui:
+    path: ../../core_ui
+  home:
+    path: ../../features/home
+  cart:
+    path: ../../features/cart
+  settings:
+    path: ../../features/settings
+  order_history:
+    path: ../../features/order_history
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+
+flutter:
+

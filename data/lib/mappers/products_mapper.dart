@@ -1,4 +1,5 @@
 import 'package:domain/models/product/product_model.dart';
+
 import '../entity/product/product_entity.dart';
 
 abstract class ProductMapper {
@@ -9,7 +10,8 @@ abstract class ProductMapper {
       cost: model.cost,
       image: model.image,
       id: model.id,
-      category: model.category
+      category: model.category,
+      ingredients: model.ingredients,
     );
   }
 
@@ -20,7 +22,8 @@ abstract class ProductMapper {
       cost: entity.cost,
       image: entity.image,
       id: entity.id,
-        category: entity.category
+      category: entity.category,
+      ingredients: entity.ingredients,
     );
   }
 }

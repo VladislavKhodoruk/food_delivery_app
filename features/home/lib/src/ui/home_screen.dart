@@ -1,17 +1,20 @@
-import 'package:core/constants/app_text_constants.dart';
 import 'package:core/core.dart';
-import 'package:core/di/app_di.dart';
-import 'package:core/enums/api_enums.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
-import 'package:domain/usecases/usecases.dart';
 import 'package:flutter/material.dart';
-import 'package:home/src/ui/main_bottom_navigation_bar.dart';
-import 'product_item.dart';
-import '../bloc/home_bloc.dart';
+import 'package:navigation/navigation.dart';
 
+import '../bloc/home_bloc.dart';
+import 'popup_menu.dart';
+import 'product_item.dart';
+
+@RoutePage()
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,46 +23,58 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ThemeData theme = Theme.of(context);
 
     return BlocProvider<HomeBloc>(
       create: (BuildContext context) => HomeBloc(
         fetchAllProductsUseCase: appLocator.get<FetchAllProductsUseCase>(),
       ),
       child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (BuildContext context, HomeState state) {
-          final bloc = context.read<HomeBloc>();
+        builder: (
+          BuildContext context,
+          HomeState state,
+        ) {
+          //TODO remove bloc from builder
+          final HomeBloc bloc = context.read<HomeBloc>();
 
-          return SafeArea(
-            child: Scaffold(
-                backgroundColor: AppColors.white,
-                appBar: AppBar(
-                  toolbarHeight: 65,
-                  title: const Text(AppTextConstants.appName),
-                  actions: <Widget>[
-                    Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: PopupMenu(
-                        selectedOption: state.category,
-                        onPressed: (String category) =>
-                            (bloc.add(SetCategoryEvent(category))),
-                        menuOptions: state.products
-                            .map((ProductModel product) => product.category)
-                            .toList(),
+          return Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 65,
+              title: const Text(
+                LocaleKeys.appName,
+              ).tr(),
+              actions: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: PopupMenu(
+                    selectedOption: state.category,
+                    onPressed: (String category) => {
+                      bloc.add(
+                        SetCategoryEvent(category),
                       ),
-                    ),
-                  ],
-                ),
-                body: Container(
-                  color: AppColors.blueLight,
-                  child: RefreshIndicator(
-                    onRefresh: () {
-                      return Future<void>(() => bloc.add(LoadHomeEvent()));
                     },
-                    child: _content(state, textTheme),
+                    menuOptions: state.products
+                        .map(
+                          (ProductModel product) => product.category,
+                        )
+                        .toList(),
                   ),
                 ),
-                bottomNavigationBar: const MainBottomNavigationBar()),
+              ],
+            ),
+            body: Wrapper(
+              RefreshIndicator(
+                backgroundColor: theme.colorScheme.secondary,
+                onRefresh: () {
+                  return Future<void>(
+                    () => bloc.add(
+                      LoadHomeEvent(),
+                    ),
+                  );
+                },
+                child: _content(state, theme),
+              ),
+            ),
           );
         },
       ),
@@ -68,23 +83,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _content(
     HomeState state,
-    TextTheme textTheme,
+    ThemeData theme,
   ) {
     if (state.loadingStatus == LoadingStatus.error) {
       return Center(
         child: Text(
-          state.errorMessage!,
-          style: textTheme.headlineLarge,
+          state.errorMessage,
+          style: theme.textTheme.headlineLarge,
         ),
       );
     }
     if (state.loadingStatus == LoadingStatus.loading) {
-      return const Center(
+      return Center(
         child: SizedBox(
           width: 50,
           height: 50,
           child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(AppColors.red),
+            valueColor: AlwaysStoppedAnimation<Color>(
+              theme.colorScheme.primary,
+            ),
           ),
         ),
       );
@@ -93,8 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
       if (state.filteredProducts.isEmpty) {
         return Center(
           child: Text(
-            AppTextConstants.emptyView,
-            style: textTheme.headlineLarge,
+            LocaleKeys.mainPage_common_noProducts.tr(),
+            style: theme.textTheme.headlineLarge,
           ),
         );
       } else {
@@ -103,18 +120,24 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
             crossAxisCount: 2,
-            childAspectRatio: 0.9,
+            childAspectRatio: 0.88,
           ),
-          padding: const EdgeInsets.all(18),
           itemCount: state.filteredProducts.length,
           itemBuilder: (
             BuildContext context,
             int index,
           ) {
-            return ProductItem(
-              productItem: state.filteredProducts[index],
-              key: ValueKey(
-                state.filteredProducts[index].id,
+            return GestureDetector(
+              onTap: () => context.router.push(
+                DetailsRoute(
+                  product: state.filteredProducts[index],
+                ),
+              ),
+              child: ProductItem(
+                productItem: state.filteredProducts[index],
+                key: ValueKey(
+                  state.filteredProducts[index].id,
+                ),
               ),
             );
           },

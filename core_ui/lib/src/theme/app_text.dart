@@ -9,14 +9,26 @@ class AppText {
     fontFamily: _cabinFontFamily,
   );
 
-  static const TextStyle cabin16Bold = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w700,
+  static const TextStyle cabin20Regular = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
     fontFamily: _cabinFontFamily,
   );
 
-  static const TextStyle cabin16SemiBold = TextStyle(
+  static const TextStyle cabin14SemiBold = TextStyle(
     fontSize: 14,
+    fontWeight: FontWeight.w500,
+    fontFamily: _cabinFontFamily,
+  );
+
+  static const TextStyle cabin14Regular = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: _cabinFontFamily,
+  );
+
+  static const TextStyle cabin10SemiBold = TextStyle(
+    fontSize: 10,
     fontWeight: FontWeight.w500,
     fontFamily: _cabinFontFamily,
   );

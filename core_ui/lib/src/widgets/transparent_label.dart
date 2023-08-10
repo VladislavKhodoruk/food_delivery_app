@@ -1,4 +1,3 @@
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class TransparentLabel extends StatelessWidget {
@@ -19,14 +18,16 @@ class TransparentLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Container(
       margin: margin,
       padding: padding,
       height: height,
       width: width,
-      decoration: const BoxDecoration(
-        color: AppColors.grayTransparent,
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceTint,
+        borderRadius: const BorderRadius.all(
           Radius.circular(5),
         ),
       ),
