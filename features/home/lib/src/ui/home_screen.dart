@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BuildContext context,
           HomeState state,
         ) {
+          //TODO remove bloc from builder
           final HomeBloc bloc = context.read<HomeBloc>();
 
           return Scaffold(
