@@ -23,127 +23,134 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-
     return BlocProvider<HomeBloc>(
       create: (BuildContext context) => HomeBloc(
         fetchAllProductsUseCase: appLocator.get<FetchAllProductsUseCase>(),
       ),
-      child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (
-          BuildContext context,
-          HomeState state,
-        ) {
-          //TODO remove bloc from builder
-          final HomeBloc bloc = context.read<HomeBloc>();
+      child: const _HomeContent(),
+    );
+  }
+}
 
-          return Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 65,
-              title: const Text(
-                LocaleKeys.appName,
-              ).tr(),
-              actions: <Widget>[
-                Container(
-                  padding: const EdgeInsets.only(right: 4),
-                  child: PopupMenu(
-                    selectedOption: state.category,
-                    onPressed: (String category) => {
-                      bloc.add(
-                        SetCategoryEvent(category),
-                      ),
-                    },
-                    menuOptions: state.products
-                        .map(
-                          (ProductModel product) => product.category,
-                        )
-                        .toList(),
-                  ),
-                ),
-              ],
-            ),
-            body: Wrapper(
-              RefreshIndicator(
-                backgroundColor: theme.colorScheme.secondary,
-                onRefresh: () {
-                  return Future<void>(
-                    () => bloc.add(
-                      LoadHomeEvent(),
+class _HomeContent extends StatelessWidget {
+  const _HomeContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final HomeBloc bloc = context.read<HomeBloc>();
+
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (
+        BuildContext context,
+        HomeState state,
+      ) {
+        return Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 65,
+            title: const Text(
+              LocaleKeys.appName,
+            ).tr(),
+            actions: <Widget>[
+              Container(
+                padding: const EdgeInsets.only(right: 4),
+                child: PopupMenu(
+                  selectedOption: state.category,
+                  onPressed: (String category) => {
+                    bloc.add(
+                      SetCategoryEvent(category),
                     ),
-                  );
-                },
-                child: _content(state, theme),
+                  },
+                  menuOptions: state.products
+                      .map(
+                        (ProductModel product) => product.category,
+                      )
+                      .toList(),
+                ),
+              ),
+            ],
+          ),
+          body: Wrapper(
+            RefreshIndicator(
+              backgroundColor: theme.colorScheme.secondary,
+              onRefresh: () {
+                return Future<void>(
+                  () => bloc.add(
+                    LoadHomeEvent(),
+                  ),
+                );
+              },
+              child: _content(state, theme),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+Widget _content(
+  HomeState state,
+  ThemeData theme,
+) {
+  if (state.loadingStatus == LoadingStatus.error) {
+    return Center(
+      child: Text(
+        state.errorMessage,
+        style: theme.textTheme.headlineLarge,
+      ),
+    );
+  }
+  if (state.loadingStatus == LoadingStatus.loading) {
+    return Center(
+      child: SizedBox(
+        width: 50,
+        height: 50,
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(
+            theme.colorScheme.primary,
+          ),
+        ),
+      ),
+    );
+  }
+  if (state.loadingStatus == LoadingStatus.loaded) {
+    if (state.filteredProducts.isEmpty) {
+      return Center(
+        child: Text(
+          LocaleKeys.mainPage_common_noProducts.tr(),
+          style: theme.textTheme.headlineLarge,
+        ),
+      );
+    } else {
+      return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          crossAxisCount: 2,
+          childAspectRatio: 0.88,
+        ),
+        itemCount: state.filteredProducts.length,
+        itemBuilder: (
+          BuildContext context,
+          int index,
+        ) {
+          return GestureDetector(
+            onTap: () => context.router.push(
+              DetailsRoute(
+                product: state.filteredProducts[index],
+              ),
+            ),
+            child: ProductItem(
+              productItem: state.filteredProducts[index],
+              key: ValueKey(
+                state.filteredProducts[index].id,
               ),
             ),
           );
         },
-      ),
-    );
-  }
-
-  Widget _content(
-    HomeState state,
-    ThemeData theme,
-  ) {
-    if (state.loadingStatus == LoadingStatus.error) {
-      return Center(
-        child: Text(
-          state.errorMessage,
-          style: theme.textTheme.headlineLarge,
-        ),
       );
     }
-    if (state.loadingStatus == LoadingStatus.loading) {
-      return Center(
-        child: SizedBox(
-          width: 50,
-          height: 50,
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(
-              theme.colorScheme.primary,
-            ),
-          ),
-        ),
-      );
-    }
-    if (state.loadingStatus == LoadingStatus.loaded) {
-      if (state.filteredProducts.isEmpty) {
-        return Center(
-          child: Text(
-            LocaleKeys.mainPage_common_noProducts.tr(),
-            style: theme.textTheme.headlineLarge,
-          ),
-        );
-      } else {
-        return GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20,
-            crossAxisCount: 2,
-            childAspectRatio: 0.88,
-          ),
-          itemCount: state.filteredProducts.length,
-          itemBuilder: (
-            BuildContext context,
-            int index,
-          ) {
-            return GestureDetector(
-              onTap: () => context.router.push(
-                DetailsRoute(
-                  product: state.filteredProducts[index],
-                ),
-              ),
-              child: ProductItem(
-                productItem: state.filteredProducts[index],
-                key: ValueKey(
-                  state.filteredProducts[index].id,
-                ),
-              ),
-            );
-          },
-        );
-      }
-    }
-    return const SizedBox.shrink();
   }
+  return const SizedBox.shrink();
 }
