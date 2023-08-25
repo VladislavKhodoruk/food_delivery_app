@@ -1,36 +1,19 @@
-import 'package:core/extensions/extensions.dart';
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-class ProductItem extends StatefulWidget {
-  final ProductModel productItem;
-  final VoidCallback? onPressed;
+class ProductItem extends StatelessWidget {
+  final CartItemModel cartItem;
+  final VoidCallback onPlusTap;
+  final VoidCallback onMinusTap;
 
   const ProductItem({
-    required this.productItem,
-    this.onPressed,
+    required this.cartItem,
+    required this.onPlusTap,
+    required this.onMinusTap,
     super.key,
   });
-
-  @override
-  State<ProductItem> createState() => _ProductItemState();
-}
-
-class _ProductItemState extends State<ProductItem> {
-  int _count = 0;
-
-  void _onPlusTap() {
-    setState(() {
-      _count += 1;
-    });
-  }
-
-  void _onMinusTap() {
-    setState(() {
-      _count -= 1;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +43,7 @@ class _ProductItemState extends State<ProductItem> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Image.network(
-                  widget.productItem.image,
+                  cartItem.product.image,
                 ),
               ),
               Positioned(
@@ -73,13 +56,13 @@ class _ProductItemState extends State<ProductItem> {
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       margin: const EdgeInsets.only(right: 5),
                       child: Text(
-                        '${widget.productItem.cost}\$',
+                        '${cartItem.product.cost}\$',
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.secondary,
                         ),
                       ),
                     ),
-                    if (_count > 0)
+                    if (cartItem.amount > 0)
                       Row(
                         children: <Widget>[
                           TransparentLabel(
@@ -87,7 +70,7 @@ class _ProductItemState extends State<ProductItem> {
                             width: 28,
                             margin: const EdgeInsets.only(right: 5),
                             child: GestureDetector(
-                              onTap: _onMinusTap,
+                              onTap: onMinusTap,
                               child: Icon(
                                 Icons.remove_rounded,
                                 color: theme.colorScheme.secondary,
@@ -100,7 +83,7 @@ class _ProductItemState extends State<ProductItem> {
                             height: 28,
                             width: 28,
                             child: Text(
-                              _count.toString(),
+                              cartItem.amount.toString(),
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: theme.colorScheme.secondary,
                               ),
@@ -112,7 +95,7 @@ class _ProductItemState extends State<ProductItem> {
                       height: 28,
                       width: 28,
                       child: GestureDetector(
-                        onTap: _onPlusTap,
+                        onTap: onPlusTap,
                         child: Icon(
                           Icons.add_rounded,
                           color: theme.colorScheme.secondary,
@@ -129,7 +112,7 @@ class _ProductItemState extends State<ProductItem> {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Center(
               child: Text(
-                widget.productItem.name.capitalizeEveryWord(),
+                cartItem.product.name.capitalizeEveryWord(),
                 style: theme.textTheme.bodyMedium,
                 maxLines: 1,
                 textAlign: TextAlign.center,

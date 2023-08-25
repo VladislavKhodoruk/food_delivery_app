@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/constants/constants.dart';
-import 'package:data/entity/product/product_entity.dart';
+
+import '../../entities/product/product_entity.dart';
 
 class ApiProvider {
   final FirebaseFirestore _database;

@@ -56,8 +56,8 @@ class MainBottomNavigationBar extends StatelessWidget {
           label: LocaleKeys.mainPage_orderHistoryScreen_name.tr(),
         ),
         BottomNavigationBarItem(
-          icon: CartButton(),
-          activeIcon: CartButton(
+          icon: const CartButton(),
+          activeIcon: const CartButton(
             isActive: true,
           ),
           label: LocaleKeys.mainPage_cartScreen_name.tr(),

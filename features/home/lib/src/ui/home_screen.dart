@@ -4,28 +4,27 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
-import '../bloc/home_bloc.dart';
 import 'popup_menu.dart';
 import 'product_item.dart';
 
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({
-    Key? key,
-  }) : super(
-          key: key,
-        );
+    super.key,
+  });
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeBloc>(
       create: (BuildContext context) => HomeBloc(
         fetchAllProductsUseCase: appLocator.get<FetchAllProductsUseCase>(),
+        addCartItemToStorageUseCase:
+            appLocator.get<AddCartItemToStorageUseCase>(),
+        deleteCartItemFromStorageUseCase:
+            appLocator.get<DeleteCartItemFromStorageUseCase>(),
+        getAllCartItemsFromStorageUseCase:
+            appLocator.get<GetAllCartItemsFromStorageUseCase>(),
+        appRouter: appLocator.get<AppRouter>(),
       ),
       child: const _HomeContent(),
     );
@@ -61,9 +60,9 @@ class _HomeContent extends StatelessWidget {
                       SetCategoryEvent(category),
                     ),
                   },
-                  menuOptions: state.products
+                  menuOptions: state.cartItems
                       .map(
-                        (ProductModel product) => product.category,
+                        (CartItemModel cartItem) => cartItem.product.category,
                       )
                       .toList(),
                 ),
@@ -80,7 +79,7 @@ class _HomeContent extends StatelessWidget {
                   ),
                 );
               },
-              child: _content(state, theme),
+              child: _content(state, theme, bloc),
             ),
           ),
         );
@@ -92,6 +91,7 @@ class _HomeContent extends StatelessWidget {
 Widget _content(
   HomeState state,
   ThemeData theme,
+  HomeBloc bloc,
 ) {
   if (state.loadingStatus == LoadingStatus.error) {
     return Center(
@@ -115,7 +115,7 @@ Widget _content(
     );
   }
   if (state.loadingStatus == LoadingStatus.loaded) {
-    if (state.filteredProducts.isEmpty) {
+    if (state.filteredCartItems.isEmpty) {
       return Center(
         child: Text(
           LocaleKeys.mainPage_common_noProducts.tr(),
@@ -130,22 +130,28 @@ Widget _content(
           crossAxisCount: 2,
           childAspectRatio: 0.88,
         ),
-        itemCount: state.filteredProducts.length,
+        itemCount: state.filteredCartItems.length,
         itemBuilder: (
           BuildContext context,
           int index,
         ) {
           return GestureDetector(
-            onTap: () => context.router.push(
-              DetailsRoute(
-                product: state.filteredProducts[index],
-              ),
-            ),
+            onTap: () {
+              bloc.add(
+                NavigateOnDetailsEvent(index),
+              );
+            },
             child: ProductItem(
-              productItem: state.filteredProducts[index],
+              cartItem: state.filteredCartItems[index],
               key: ValueKey(
-                state.filteredProducts[index].id,
+                state.filteredCartItems[index].product.id,
               ),
+              onPlusTap: () {
+                bloc.add(AddItemEvent(state.filteredCartItems[index]));
+              },
+              onMinusTap: () {
+                bloc.add(DeleteItemEvent(state.filteredCartItems[index]));
+              },
             ),
           );
         },

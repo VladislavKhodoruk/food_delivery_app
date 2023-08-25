@@ -48,10 +48,12 @@ class AppTheme {
         headlineLarge: AppText.cabin24Bold.copyWith(
           color: AppColors.smoulderingRed,
         ),
+        labelLarge:
+            AppText.cabin24Regular.copyWith(color: AppColors.smoulderingRed),
         headlineMedium: AppText.cabin20Regular.copyWith(
           color: AppColors.white,
         ),
-        labelLarge: AppText.cabin14Regular.copyWith(
+        labelMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.shoeWax,
         ),
         labelSmall: AppText.cabin10SemiBold.copyWith(
@@ -75,6 +77,16 @@ class AppTheme {
           AppColors.costumeBlue.withOpacity(
             0.25,
           ),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.smoulderingRed,
+          foregroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          splashFactory: InkRipple.splashFactory,
         ),
       ),
     );
@@ -124,7 +136,8 @@ class AppTheme {
         headlineMedium: AppText.cabin20Regular.copyWith(
           color: AppColors.eerieBlack,
         ),
-        labelLarge: AppText.cabin14Regular.copyWith(
+        labelLarge: AppText.cabin24Regular.copyWith(color: AppColors.heatWave),
+        labelMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.christmasSilver,
         ),
         labelSmall: AppText.cabin10SemiBold.copyWith(
@@ -146,6 +159,16 @@ class AppTheme {
         ),
         trackOutlineColor: MaterialStateProperty.all(
           AppColors.eerieBlack,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.heatWave,
+          foregroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          splashFactory: InkRipple.splashFactory,
         ),
       ),
     );

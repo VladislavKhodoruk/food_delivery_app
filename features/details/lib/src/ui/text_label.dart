@@ -25,7 +25,7 @@ class TextLabel extends StatelessWidget {
       ),
       child: Text(
         text.capitalize(),
-        style: themeData.textTheme.labelLarge,
+        style: themeData.textTheme.labelMedium,
       ),
     );
   }

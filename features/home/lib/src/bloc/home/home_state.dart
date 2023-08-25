@@ -3,38 +3,38 @@ part of 'home_bloc.dart';
 class HomeState {
   final LoadingStatus loadingStatus;
   final String category;
-  final List<ProductModel> products;
-  final List<ProductModel> filteredProducts;
+  final List<CartItemModel> cartItems;
+  final List<CartItemModel> filteredCartItems;
   final String errorMessage;
 
   const HomeState({
     required this.loadingStatus,
     required this.category,
-    required this.products,
-    required this.filteredProducts,
+    required this.cartItems,
+    required this.filteredCartItems,
     required this.errorMessage,
   });
 
   HomeState.empty({
     this.loadingStatus = LoadingStatus.loading,
     this.category = '',
-    this.products = const [],
-    this.filteredProducts = const [],
+    this.cartItems = const [],
+    this.filteredCartItems = const [],
     this.errorMessage = '',
   });
 
   HomeState copyWith({
     LoadingStatus? loadingStatus,
     String? category,
-    List<ProductModel>? products,
-    List<ProductModel>? filteredProducts,
+    List<CartItemModel>? cartItems,
+    List<CartItemModel>? filteredCartItems,
     String? errorMessage,
   }) {
     return HomeState(
       loadingStatus: loadingStatus ?? this.loadingStatus,
       category: category ?? this.category,
-      products: products ?? this.products,
-      filteredProducts: filteredProducts ?? this.filteredProducts,
+      cartItems: cartItems ?? this.cartItems,
+      filteredCartItems: filteredCartItems ?? this.filteredCartItems,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
