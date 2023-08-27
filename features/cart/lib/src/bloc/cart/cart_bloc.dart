@@ -3,7 +3,6 @@ import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 
 part 'cart_event.dart';
-
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
@@ -25,8 +24,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         super(
           CartState.empty(),
         ) {
-    on<AddItemEvent>(_addItem);
-    on<DeleteItemEvent>(_deleteItem);
+    on<AddCartItemEvent>(_addItem);
+    on<DeleteCartItemEvent>(_deleteItem);
     on<GetCartItemsFromStorageEvent>(_getAllCartItems);
 
     _appRouter.addListener(_initListener);
@@ -42,7 +41,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _addItem(
-    AddItemEvent event,
+    AddCartItemEvent event,
     Emitter<CartState> emit,
   ) async {
     List<CartItemModel> newItems = state.cartItems;
@@ -59,7 +58,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _deleteItem(
-    DeleteItemEvent event,
+    DeleteCartItemEvent event,
     Emitter<CartState> emit,
   ) async {
     List<CartItemModel> newItems = state.cartItems;
@@ -69,12 +68,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
     if (newItem.amount > 0) {
       await _addCartItemToStorageUseCase.execute(newItem);
+      final int index = newItems
+          .indexWhere((item) => item.product.id == eventCartItem.product.id);
+      newItems[index] = eventCartItem.copyWith(amount: newItem.amount);
     } else {
       await _deleteCartItemFromStorageUseCase.execute(eventCartItem);
+      newItems.remove(eventCartItem);
     }
-    final int index = newItems
-        .indexWhere((item) => item.product.id == eventCartItem.product.id);
-    newItems[index] = eventCartItem.copyWith(amount: newItem.amount);
+
     emit(
       state.copyWith(
         cartItems: newItems,

@@ -66,11 +66,11 @@ class ProductItem extends StatelessWidget {
                     if (cartItem.amount > 0)
                       Row(
                         children: <Widget>[
-                          TransparentLabel(
-                            height: 28,
-                            width: 28,
-                            child: GestureDetector(
-                              onTap: onMinusTap,
+                          GestureDetector(
+                            onTap: onMinusTap,
+                            child: TransparentLabel(
+                              height: 28,
+                              width: 28,
                               child: Icon(
                                 Icons.remove_rounded,
                                 color: theme.colorScheme.secondary,
@@ -92,11 +92,11 @@ class ProductItem extends StatelessWidget {
                           const SizedBox(width: 5),
                         ],
                       ),
-                    TransparentLabel(
-                      height: 28,
-                      width: 28,
-                      child: GestureDetector(
-                        onTap: onPlusTap,
+                    GestureDetector(
+                      onTap: onPlusTap,
+                      child: TransparentLabel(
+                        height: 28,
+                        width: 28,
                         child: Icon(
                           Icons.add_rounded,
                           color: theme.colorScheme.secondary,

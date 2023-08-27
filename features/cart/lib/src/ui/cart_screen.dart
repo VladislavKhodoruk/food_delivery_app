@@ -4,8 +4,6 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
-import '../bloc/cart/cart_bloc.dart';
-
 @RoutePage()
 class CartScreen extends StatelessWidget {
   const CartScreen({
@@ -58,7 +56,15 @@ class _CartContent extends StatelessWidget {
               itemCount: state.cartItems.length,
               separatorBuilder: (_, __) => const SizedBox(height: 11),
               itemBuilder: (BuildContext context, int index) {
-                return CartItem(cartItem: state.cartItems[index]);
+                return CartItem(
+                  cartItem: state.cartItems[index],
+                  onPlusTap: () {
+                    bloc.add(AddCartItemEvent(state.cartItems[index]));
+                  },
+                  onMinusTap: () {
+                    bloc.add(DeleteCartItemEvent(state.cartItems[index]));
+                  },
+                );
               },
             ),
           ),

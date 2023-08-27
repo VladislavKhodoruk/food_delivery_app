@@ -6,10 +6,14 @@ import 'package:flutter/material.dart';
 
 class CartItem extends StatelessWidget {
   final CartItemModel cartItem;
+  final VoidCallback onPlusTap;
+  final VoidCallback onMinusTap;
 
   const CartItem({
     required this.cartItem,
     super.key,
+    required this.onPlusTap,
+    required this.onMinusTap,
   });
 
   @override
@@ -61,11 +65,14 @@ class CartItem extends StatelessWidget {
                 const SizedBox(width: 7),
                 Row(
                   children: <Widget>[
-                    TransparentLabel(
-                      child: Icon(
-                        Icons.remove_rounded,
-                        color: theme.colorScheme.secondary,
-                        size: 22,
+                    GestureDetector(
+                      onTap: onMinusTap,
+                      child: TransparentLabel(
+                        child: Icon(
+                          Icons.remove_rounded,
+                          color: theme.colorScheme.secondary,
+                          size: 22,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 3),
@@ -80,11 +87,14 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 3),
-                    TransparentLabel(
-                      child: Icon(
-                        Icons.add_rounded,
-                        color: theme.colorScheme.secondary,
-                        size: 22,
+                    GestureDetector(
+                      onTap: onPlusTap,
+                      child: TransparentLabel(
+                        child: Icon(
+                          Icons.add_rounded,
+                          color: theme.colorScheme.secondary,
+                          size: 22,
+                        ),
                       ),
                     ),
                   ],
@@ -95,7 +105,7 @@ class CartItem extends StatelessWidget {
         ),
         Positioned(
           right: 0,
-          child: PriceLabel(cartItem.product.cost),
+          child: PriceLabel(cartItem.product.cost * cartItem.amount),
         ),
       ],
     );

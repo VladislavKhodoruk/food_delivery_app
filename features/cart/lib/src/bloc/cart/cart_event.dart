@@ -4,16 +4,16 @@ abstract class CartEvent {
   const CartEvent();
 }
 
-class AddItemEvent extends CartEvent {
+class AddCartItemEvent extends CartEvent {
   final CartItemModel cartItem;
 
-  AddItemEvent(this.cartItem);
+  AddCartItemEvent(this.cartItem);
 }
 
-class DeleteItemEvent extends CartEvent {
+class DeleteCartItemEvent extends CartEvent {
   final CartItemModel cartItem;
 
-  DeleteItemEvent(this.cartItem);
+  DeleteCartItemEvent(this.cartItem);
 }
 
 class GetCartItemsFromStorageEvent extends CartEvent {
