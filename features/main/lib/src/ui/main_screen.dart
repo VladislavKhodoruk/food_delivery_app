@@ -5,7 +5,7 @@ import 'package:home/home.gm.dart';
 import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 
-import 'main_bottom_navigation_bar.dart';
+import 'widgets/main_bottom_navigation_bar.dart';
 
 @RoutePage()
 class MainScreen extends StatelessWidget {
@@ -22,6 +22,7 @@ class MainScreen extends StatelessWidget {
       ],
       builder: (context, child, _) {
         final tabsRouter = AutoTabsRouter.of(context);
+
         return Scaffold(
           body: child,
           bottomNavigationBar: MainBottomNavigationBar(

@@ -48,10 +48,14 @@ class AppTheme {
         headlineLarge: AppText.cabin24Bold.copyWith(
           color: AppColors.smoulderingRed,
         ),
-        labelLarge:
-            AppText.cabin24Regular.copyWith(color: AppColors.smoulderingRed),
         headlineMedium: AppText.cabin20Regular.copyWith(
           color: AppColors.white,
+        ),
+        headlineSmall: AppText.cabin18Regular.copyWith(
+          color: AppColors.shoeWax,
+        ),
+        labelLarge: AppText.cabin24Regular.copyWith(
+          color: AppColors.smoulderingRed,
         ),
         labelMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.shoeWax,
@@ -59,10 +63,10 @@ class AppTheme {
         labelSmall: AppText.cabin10SemiBold.copyWith(
           color: AppColors.smoulderingRed,
         ),
-        bodyLarge: AppText.cabin14Regular.copyWith(
+        bodyMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.shoeWax,
         ),
-        bodyMedium: AppText.cabin14SemiBold.copyWith(
+        bodySmall: AppText.cabin14SemiBold.copyWith(
           color: AppColors.shoeWax,
         ),
       ),
@@ -136,17 +140,22 @@ class AppTheme {
         headlineMedium: AppText.cabin20Regular.copyWith(
           color: AppColors.eerieBlack,
         ),
-        labelLarge: AppText.cabin24Regular.copyWith(color: AppColors.heatWave),
+        headlineSmall: AppText.cabin18Regular.copyWith(
+          color: AppColors.christmasSilver,
+        ),
+        labelLarge: AppText.cabin24Regular.copyWith(
+          color: AppColors.heatWave,
+        ),
         labelMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.christmasSilver,
         ),
         labelSmall: AppText.cabin10SemiBold.copyWith(
           color: AppColors.heatWave,
         ),
-        bodyLarge: AppText.cabin14Regular.copyWith(
+        bodyMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.white,
         ),
-        bodyMedium: AppText.cabin14SemiBold.copyWith(
+        bodySmall: AppText.cabin14SemiBold.copyWith(
           color: AppColors.white,
         ),
       ),

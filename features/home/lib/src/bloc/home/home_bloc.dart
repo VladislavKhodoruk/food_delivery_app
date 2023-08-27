@@ -3,7 +3,6 @@ import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 
 part 'home_event.dart';
-
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -11,7 +10,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final AddCartItemToStorageUseCase _addCartItemToStorageUseCase;
   final DeleteCartItemFromStorageUseCase _deleteCartItemFromStorageUseCase;
   final GetAllCartItemsFromStorageUseCase _getAllCartItemsFromStorageUseCase;
-
   final AppRouter _appRouter;
 
   HomeBloc({
@@ -21,11 +19,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required DeleteCartItemFromStorageUseCase deleteCartItemFromStorageUseCase,
     required GetAllCartItemsFromStorageUseCase
         getAllCartItemsFromStorageUseCase,
-  })  : _fetchAllProductsUseCase = fetchAllProductsUseCase,
+  })  : _appRouter = appRouter,
+        _fetchAllProductsUseCase = fetchAllProductsUseCase,
         _addCartItemToStorageUseCase = addCartItemToStorageUseCase,
         _deleteCartItemFromStorageUseCase = deleteCartItemFromStorageUseCase,
         _getAllCartItemsFromStorageUseCase = getAllCartItemsFromStorageUseCase,
-        _appRouter = appRouter,
         super(
           HomeState.empty(),
         ) {

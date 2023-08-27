@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:main/src/ui/cart_button.dart';
+import 'package:main/src/ui/widgets/cart_button.dart';
 
 class MainBottomNavigationBar extends StatelessWidget {
   final int currentIndex;

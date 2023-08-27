@@ -2,8 +2,8 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-import '../bloc/main/main_bloc.dart';
-import '../bloc/main/main_bloc_observer.dart';
+import '../../bloc/main/main_bloc.dart';
+import '../../bloc/main/main_bloc_observer.dart';
 
 class CartButton extends StatelessWidget {
   final bool isActive;

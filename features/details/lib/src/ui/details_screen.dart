@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:details/src/ui/text_label.dart';
+import 'package:details/src/ui/widgets/text_label.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
@@ -101,7 +101,7 @@ class _DetailsContent extends StatelessWidget {
                               const SizedBox(height: 15),
                               Text(
                                 '\t\t\t${state.cartItem.product.description}',
-                                style: theme.textTheme.bodyLarge,
+                                style: theme.textTheme.bodyMedium,
                               ),
                               const SizedBox(height: 15),
                               Divider(

@@ -45,7 +45,7 @@ class PopupMenu extends StatelessWidget {
                 item.isNotEmpty
                     ? item.capitalize()
                     : LocaleKeys.mainPage_homeScreen_allProductsMenuItem.tr(),
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodySmall,
               ),
             ),
           )

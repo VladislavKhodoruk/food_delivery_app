@@ -8,7 +8,7 @@ class TextLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -16,16 +16,16 @@ class TextLabel extends StatelessWidget {
         horizontal: 10,
       ),
       decoration: BoxDecoration(
-        color: themeData.colorScheme.background,
+        color: theme.colorScheme.background,
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
           width: 1,
-          color: themeData.colorScheme.tertiary,
+          color: theme.colorScheme.tertiary,
         ),
       ),
       child: Text(
         text.capitalize(),
-        style: themeData.textTheme.labelMedium,
+        style: theme.textTheme.labelMedium,
       ),
     );
   }

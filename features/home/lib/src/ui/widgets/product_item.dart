@@ -22,18 +22,19 @@ class ProductItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-          color: theme.cardTheme.color,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: theme.cardTheme.shadowColor!,
-              spreadRadius: 0,
-              blurRadius: 8,
-              offset: const Offset(0, 2), // changes position of shadow
-            ),
-          ],
-          borderRadius: const BorderRadius.all(
-            Radius.circular(5),
-          )),
+        color: theme.cardTheme.color,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: theme.cardTheme.shadowColor!,
+            spreadRadius: 0,
+            blurRadius: 8,
+            offset: const Offset(0, 2), // changes position of shadow
+          ),
+        ],
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,21 +55,20 @@ class ProductItem extends StatelessWidget {
                     TransparentLabel(
                       height: 28,
                       padding: const EdgeInsets.symmetric(horizontal: 5),
-                      margin: const EdgeInsets.only(right: 5),
                       child: Text(
                         '${cartItem.product.cost}\$',
-                        style: theme.textTheme.bodyMedium?.copyWith(
+                        style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.secondary,
                         ),
                       ),
                     ),
+                    const SizedBox(width: 5),
                     if (cartItem.amount > 0)
                       Row(
                         children: <Widget>[
                           TransparentLabel(
                             height: 28,
                             width: 28,
-                            margin: const EdgeInsets.only(right: 5),
                             child: GestureDetector(
                               onTap: onMinusTap,
                               child: Icon(
@@ -78,17 +78,18 @@ class ProductItem extends StatelessWidget {
                               ),
                             ),
                           ),
+                          const SizedBox(width: 5),
                           TransparentLabel(
-                            margin: const EdgeInsets.only(right: 5),
                             height: 28,
                             width: 28,
                             child: Text(
                               cartItem.amount.toString(),
-                              style: theme.textTheme.bodyMedium?.copyWith(
+                              style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.colorScheme.secondary,
                               ),
                             ),
                           ),
+                          const SizedBox(width: 5),
                         ],
                       ),
                     TransparentLabel(
@@ -113,7 +114,7 @@ class ProductItem extends StatelessWidget {
             child: Center(
               child: Text(
                 cartItem.product.name.capitalizeEveryWord(),
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodySmall,
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,

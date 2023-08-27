@@ -30,13 +30,13 @@ class SettingsScreen extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       LocaleKeys.mainPage_settingsScreen_theme.tr(),
-                      style: theme.textTheme.bodyLarge,
+                      style: theme.textTheme.bodyMedium,
                     ),
                     Row(
                       children: <Widget>[
                         Text(
                           LocaleKeys.mainPage_settingsScreen_lightTheme.tr(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
                         const SizedBox(width: 10),
                         Switch(
@@ -46,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
                         const SizedBox(width: 10),
                         Text(
                           LocaleKeys.mainPage_settingsScreen_darkTheme.tr(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
                       ],
                     )
@@ -59,13 +59,13 @@ class SettingsScreen extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       LocaleKeys.mainPage_settingsScreen_language.tr(),
-                      style: theme.textTheme.bodyLarge,
+                      style: theme.textTheme.bodyMedium,
                     ),
                     Row(
                       children: <Widget>[
                         Text(
                           LanguageCode.en.name.toUpperCase(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
                         Radio(
                           visualDensity: const VisualDensity(
@@ -86,7 +86,7 @@ class SettingsScreen extends StatelessWidget {
                         const SizedBox(width: 16),
                         Text(
                           LanguageCode.be.name.toUpperCase(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
                         Radio(
                           visualDensity: const VisualDensity(
@@ -105,7 +105,7 @@ class SettingsScreen extends StatelessWidget {
                           },
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ],

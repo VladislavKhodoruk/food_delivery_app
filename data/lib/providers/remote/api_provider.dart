@@ -15,8 +15,12 @@ class ApiProvider {
         await _database.collection(ApiConstants.productsPath).get();
 
     return productsRawData.docs
-        .map((QueryDocumentSnapshot<Map<String, dynamic>> e) =>
-            ProductEntity.fromJson(e.data()))
+        .map(
+          (QueryDocumentSnapshot<Map<String, dynamic>> e) =>
+              ProductEntity.fromJson(
+            e.data(),
+          ),
+        )
         .toList();
   }
 }

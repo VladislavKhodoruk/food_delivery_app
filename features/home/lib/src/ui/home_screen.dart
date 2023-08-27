@@ -4,8 +4,8 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
-import 'popup_menu.dart';
-import 'product_item.dart';
+import 'widgets/popup_menu.dart';
+import 'widgets/product_item.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {

@@ -21,6 +21,12 @@ class AppText {
     fontFamily: _cabinFontFamily,
   );
 
+  static const TextStyle cabin18Regular = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    fontFamily: _cabinFontFamily,
+  );
+
   static const TextStyle cabin14SemiBold = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
