@@ -25,7 +25,7 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   @override
-  Future<List<CartItemModel>> getCartItems() async {
+  Future<List<CartItemModel>> getAllItemsFromCart() async {
     return (await _hiveProvider.getAllCartItems())
         .map(
           (e) => CartItemsMapper.toModel(e),

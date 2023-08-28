@@ -10,6 +10,6 @@ class GetAllCartItemsFromStorageUseCase
 
   @override
   Future<List<CartItemModel>> execute(NoParams input) async {
-    return _cartRepository.getCartItems();
+    return _cartRepository.getAllItemsFromCart();
   }
 }
