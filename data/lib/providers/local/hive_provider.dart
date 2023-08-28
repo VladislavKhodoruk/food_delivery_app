@@ -23,4 +23,8 @@ class HiveProvider {
   Future<List<CartItemEntity>> getAllCartItems() async {
     return _cartBox.values.toList();
   }
+
+  Future<void> deleteAllCartItems() async {
+    await _cartBox.clear();
+  }
 }

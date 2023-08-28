@@ -60,7 +60,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final List<ProductModel> productsFromApi =
           await _fetchAllProductsUseCase.execute(const NoParams());
       final List<CartItemModel> cartItems = productsFromApi
-          .map((product) => CartItemModel(product: product, amount: 0))
+          .map((ProductModel currentProduct) =>
+              CartItemModel(product: currentProduct, amount: 0))
           .toList();
       emit(
         state.copyWith(
@@ -102,8 +103,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     } else {
       List<CartItemModel> newFilteredProducts = state.cartItems
-          .where((CartItemModel cartItem) =>
-              cartItem.product.category == state.category)
+          .where((CartItemModel currentCartItem) =>
+              currentCartItem.product.category == state.category)
           .toList();
 
       emit(
@@ -132,8 +133,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     List<CartItemModel> newItems = state.filteredCartItems;
     final CartItemModel eventCartItem = event.cartItem;
-    final int index = newItems
-        .indexWhere((item) => item.product.id == eventCartItem.product.id);
+    final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
+        currentCartItem.product.id == eventCartItem.product.id);
     newItems[index] = eventCartItem.copyWith(amount: eventCartItem.amount + 1);
     await _addCartItemToStorageUseCase.execute(newItems[index]);
     emit(
@@ -157,8 +158,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } else {
       await _deleteCartItemFromStorageUseCase.execute(eventCartItem);
     }
-    final int index = newItems
-        .indexWhere((item) => item.product.id == eventCartItem.product.id);
+    final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
+        currentCartItem.product.id == eventCartItem.product.id);
     newItems[index] = eventCartItem.copyWith(amount: newItem.amount);
     emit(
       state.copyWith(
@@ -176,8 +177,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         await _getAllCartItemsFromStorageUseCase.execute(const NoParams());
 
     final List<CartItemModel> synchronizedCartItems = cartItems.map((cartItem) {
-      int index = cartItemsFromStorage
-          .indexWhere((element) => element.product.id == cartItem.product.id);
+      int index = cartItemsFromStorage.indexWhere(
+          (CartItemModel currentCartItem) =>
+              currentCartItem.product.id == cartItem.product.id);
       if (index != -1) {
         return cartItem.copyWith(amount: cartItemsFromStorage[index].amount);
       }

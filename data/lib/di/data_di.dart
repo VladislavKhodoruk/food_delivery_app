@@ -101,5 +101,11 @@ class DataDI {
         cartRepository: appLocator.get<CartRepository>(),
       ),
     );
+
+    appLocator.registerLazySingleton<DeleteAllCartItemsFromStorageUseCase>(
+      () => DeleteAllCartItemsFromStorageUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
   }
 }

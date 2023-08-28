@@ -21,6 +21,8 @@ class CartScreen extends StatelessWidget {
             appLocator.get<DeleteCartItemFromStorageUseCase>(),
         getAllCartItemsFromStorageUseCase:
             appLocator.get<GetAllCartItemsFromStorageUseCase>(),
+        deleteAllCartItemsFromStorageUseCase:
+            appLocator.get<DeleteAllCartItemsFromStorageUseCase>(),
       ),
       child: const _CartContent(),
     );
@@ -73,20 +75,41 @@ Widget _content(
       ),
     );
   } else {
-    return ListView.separated(
-      itemCount: state.cartItems.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 11),
-      itemBuilder: (BuildContext context, int index) {
-        return CartItem(
-          cartItem: state.cartItems[index],
-          onPlusTap: () {
-            bloc.add(AddCartItemEvent(state.cartItems[index]));
+    return Stack(
+      children: <Widget>[
+        ListView.separated(
+          itemCount: state.cartItems.length,
+          separatorBuilder: (_, __) => const SizedBox(height: 11),
+          itemBuilder: (BuildContext context, int index) {
+            return CartItem(
+              cartItem: state.cartItems[index],
+              onPlusTap: () {
+                bloc.add(AddCartItemEvent(state.cartItems[index]));
+              },
+              onMinusTap: () {
+                bloc.add(DeleteCartItemEvent(state.cartItems[index]));
+              },
+            );
           },
-          onMinusTap: () {
-            bloc.add(DeleteCartItemEvent(state.cartItems[index]));
-          },
-        );
-      },
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: SizedBox(
+            height: 45,
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                bloc.add(
+                  DeleteAllCartItemsEvent(),
+                );
+              },
+              child: Text(
+                LocaleKeys.mainPage_cartScreen_clearCart.tr(),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

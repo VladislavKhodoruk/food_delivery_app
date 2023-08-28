@@ -32,4 +32,9 @@ class CartRepositoryImpl implements CartRepository {
         )
         .toList();
   }
+
+  @override
+  Future<void> deleteAllItemsFromCart() async {
+    await _hiveProvider.deleteAllCartItems();
+  }
 }

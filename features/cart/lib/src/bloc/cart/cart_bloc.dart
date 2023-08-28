@@ -9,6 +9,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final AddCartItemToStorageUseCase _addCartItemToStorageUseCase;
   final DeleteCartItemFromStorageUseCase _deleteCartItemFromStorageUseCase;
   final GetAllCartItemsFromStorageUseCase _getAllCartItemsFromStorageUseCase;
+  final DeleteAllCartItemsFromStorageUseCase
+      _deleteAllCartItemsFromStorageUseCase;
+
   final AppRouter _appRouter;
 
   CartBloc({
@@ -17,16 +20,21 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     required DeleteCartItemFromStorageUseCase deleteCartItemFromStorageUseCase,
     required GetAllCartItemsFromStorageUseCase
         getAllCartItemsFromStorageUseCase,
+    required DeleteAllCartItemsFromStorageUseCase
+        deleteAllCartItemsFromStorageUseCase,
   })  : _appRouter = appRouter,
         _addCartItemToStorageUseCase = addCartItemToStorageUseCase,
         _deleteCartItemFromStorageUseCase = deleteCartItemFromStorageUseCase,
         _getAllCartItemsFromStorageUseCase = getAllCartItemsFromStorageUseCase,
+        _deleteAllCartItemsFromStorageUseCase =
+            deleteAllCartItemsFromStorageUseCase,
         super(
           CartState.empty(),
         ) {
     on<AddCartItemEvent>(_addItem);
     on<DeleteCartItemEvent>(_deleteItem);
     on<GetCartItemsFromStorageEvent>(_getAllCartItems);
+    on<DeleteAllCartItemsEvent>(_deleteAllCartItems);
 
     _appRouter.addListener(_initListener);
 
@@ -46,8 +54,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     List<CartItemModel> newItems = state.cartItems;
     final CartItemModel eventCartItem = event.cartItem;
-    final int index = newItems
-        .indexWhere((item) => item.product.id == eventCartItem.product.id);
+    final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
+        currentCartItem.product.id == eventCartItem.product.id);
     newItems[index] = eventCartItem.copyWith(amount: eventCartItem.amount + 1);
     await _addCartItemToStorageUseCase.execute(newItems[index]);
     emit(
@@ -68,8 +76,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
     if (newItem.amount > 0) {
       await _addCartItemToStorageUseCase.execute(newItem);
-      final int index = newItems
-          .indexWhere((item) => item.product.id == eventCartItem.product.id);
+      final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
+          currentCartItem.product.id == eventCartItem.product.id);
       newItems[index] = eventCartItem.copyWith(amount: newItem.amount);
     } else {
       await _deleteCartItemFromStorageUseCase.execute(eventCartItem);
@@ -91,6 +99,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         await _getAllCartItemsFromStorageUseCase.execute(const NoParams());
     emit(
       state.copyWith(cartItems: cartItemsFromStorage),
+    );
+  }
+
+  Future<void> _deleteAllCartItems(
+    DeleteAllCartItemsEvent event,
+    Emitter<CartState> emit,
+  ) async {
+    await _deleteAllCartItemsFromStorageUseCase.execute(const NoParams());
+    emit(
+      state.copyWith(cartItems: []),
     );
   }
 

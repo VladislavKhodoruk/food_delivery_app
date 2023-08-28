@@ -16,7 +16,8 @@
       "name": "Order history"
     },
     "cartScreen": {
-      "name": "Cart"
+      "name": "Cart",
+      "clearCart": "Clear"
     },
     "common": {
       "noProducts": "No products yet..."

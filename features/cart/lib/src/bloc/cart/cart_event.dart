@@ -19,3 +19,7 @@ class DeleteCartItemEvent extends CartEvent {
 class GetCartItemsFromStorageEvent extends CartEvent {
   GetCartItemsFromStorageEvent();
 }
+
+class DeleteAllCartItemsEvent extends CartEvent {
+  DeleteAllCartItemsEvent();
+}
