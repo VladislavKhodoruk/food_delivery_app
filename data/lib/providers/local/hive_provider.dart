@@ -6,18 +6,21 @@ import '../../entities/cart_item/cart_item_entity.dart';
 class HiveProvider {
   HiveProvider();
 
+  late final Box<CartItemEntity> _cartBox;
+
+  Future<void> openBoxes() async {
+    _cartBox = await Hive.openBox<CartItemEntity>(LocalConstants.cartBox);
+  }
+
   Future<void> addCartItem(CartItemEntity cartItem) async {
-    final Box<CartItemEntity> box = await Hive.openBox(LocalConstants.cartBox);
-    box.put(cartItem.product.id, cartItem);
+    _cartBox.put(cartItem.product.id, cartItem);
   }
 
   Future<void> deleteCartItem(CartItemEntity cartItem) async {
-    final Box<CartItemEntity> box = await Hive.openBox(LocalConstants.cartBox);
-    box.delete(cartItem.product.id);
+    _cartBox.delete(cartItem.product.id);
   }
 
   Future<List<CartItemEntity>> getAllCartItems() async {
-    final Box<CartItemEntity> box = await Hive.openBox(LocalConstants.cartBox);
-    return box.values.toList();
+    return _cartBox.values.toList();
   }
 }

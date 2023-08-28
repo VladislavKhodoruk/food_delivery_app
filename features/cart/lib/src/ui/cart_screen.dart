@@ -52,22 +52,39 @@ class _CartContent extends StatelessWidget {
               right: 13,
               bottom: 18,
             ),
-            child: ListView.separated(
-              itemCount: state.cartItems.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 11),
-              itemBuilder: (BuildContext context, int index) {
-                return CartItem(
-                  cartItem: state.cartItems[index],
-                  onPlusTap: () {
-                    bloc.add(AddCartItemEvent(state.cartItems[index]));
-                  },
-                  onMinusTap: () {
-                    bloc.add(DeleteCartItemEvent(state.cartItems[index]));
-                  },
-                );
-              },
-            ),
+            child: _content(state, theme, bloc),
           ),
+        );
+      },
+    );
+  }
+}
+
+Widget _content(
+  CartState state,
+  ThemeData theme,
+  CartBloc bloc,
+) {
+  if (state.cartItems.isEmpty) {
+    return Center(
+      child: Text(
+        LocaleKeys.mainPage_common_noProducts.tr(),
+        style: theme.textTheme.headlineLarge,
+      ),
+    );
+  } else {
+    return ListView.separated(
+      itemCount: state.cartItems.length,
+      separatorBuilder: (_, __) => const SizedBox(height: 11),
+      itemBuilder: (BuildContext context, int index) {
+        return CartItem(
+          cartItem: state.cartItems[index],
+          onPlusTap: () {
+            bloc.add(AddCartItemEvent(state.cartItems[index]));
+          },
+          onMinusTap: () {
+            bloc.add(DeleteCartItemEvent(state.cartItems[index]));
+          },
         );
       },
     );
