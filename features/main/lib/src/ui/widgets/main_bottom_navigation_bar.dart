@@ -7,9 +7,9 @@ class MainBottomNavigationBar extends StatelessWidget {
   final void Function(int) onTap;
 
   const MainBottomNavigationBar({
-    super.key,
     required this.currentIndex,
     required this.onTap,
+    super.key,
   });
 
   @override

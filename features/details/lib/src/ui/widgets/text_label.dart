@@ -1,10 +1,14 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class TextLabel extends StatelessWidget {
   final String text;
 
-  const TextLabel(this.text, {super.key});
+  const TextLabel(
+    this.text, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +16,15 @@ class TextLabel extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(
-        vertical: 2,
-        horizontal: 10,
+        vertical: AppPadding.padding2,
+        horizontal: AppPadding.padding10,
       ),
       decoration: BoxDecoration(
         color: theme.colorScheme.background,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(
+          AppBorderRadius.radius5,
+        ),
         border: Border.all(
-          width: 1,
           color: theme.colorScheme.tertiary,
         ),
       ),

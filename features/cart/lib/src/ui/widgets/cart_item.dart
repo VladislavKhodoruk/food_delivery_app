@@ -1,8 +1,9 @@
-import 'package:cart/src/ui/widgets/price_label.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+
+import 'price_label.dart';
 
 class CartItem extends StatelessWidget {
   final CartItemModel cartItem;
@@ -11,9 +12,9 @@ class CartItem extends StatelessWidget {
 
   const CartItem({
     required this.cartItem,
-    super.key,
     required this.onPlusTap,
     required this.onMinusTap,
+    super.key,
   });
 
   @override
@@ -24,45 +25,46 @@ class CartItem extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.only(
-            top: 7,
-            right: 5,
+            top: AppPadding.padding7,
+            right: AppPadding.padding5,
           ),
           child: Container(
             padding: const EdgeInsets.only(
-              left: 6,
-              top: 6,
-              right: 12,
-              bottom: 6,
+              left: AppPadding.padding6,
+              top: AppPadding.padding6,
+              right: AppPadding.padding12,
+              bottom: AppPadding.padding6,
             ),
             decoration: BoxDecoration(
               color: theme.colorScheme.background,
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(
+                AppBorderRadius.radius5,
+              ),
               border: Border.all(
-                width: 1,
                 color: theme.colorScheme.tertiary,
               ),
             ),
             child: Row(
               children: <Widget>[
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(AppBorderRadius.radius5),
                   child: Image.network(
                     cartItem.product.image,
-                    height: 55,
-                    width: 75,
+                    height: AppSize.size55,
+                    width: AppSize.size75,
                     fit: BoxFit.fitWidth,
                   ),
                 ),
-                const SizedBox(width: 7),
+                const SizedBox(width: AppSpacing.spacing7),
                 Expanded(
                   child: Text(
                     cartItem.product.name.capitalizeEveryWord(),
                     style: theme.textTheme.headlineSmall,
-                    maxLines: 2,
+                    maxLines: AppMaxLines.max2,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const SizedBox(width: 7),
+                const SizedBox(width: AppSpacing.spacing7),
                 Row(
                   children: <Widget>[
                     GestureDetector(
@@ -71,14 +73,14 @@ class CartItem extends StatelessWidget {
                         child: Icon(
                           Icons.remove_rounded,
                           color: theme.colorScheme.secondary,
-                          size: 22,
+                          size: AppSize.size22,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 3),
+                    const SizedBox(width: AppSpacing.spacing3),
                     TransparentLabel(
-                      height: 22,
-                      width: 22,
+                      height: AppSize.size22,
+                      width: AppSize.size22,
                       child: Text(
                         cartItem.amount.toString(),
                         style: theme.textTheme.bodyMedium?.copyWith(
@@ -86,14 +88,14 @@ class CartItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 3),
+                    const SizedBox(width: AppSpacing.spacing3),
                     GestureDetector(
                       onTap: onPlusTap,
                       child: TransparentLabel(
                         child: Icon(
                           Icons.add_rounded,
                           color: theme.colorScheme.secondary,
-                          size: 22,
+                          size: AppSize.size22,
                         ),
                       ),
                     ),
@@ -104,7 +106,7 @@ class CartItem extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 0,
+          right: AppSpacing.spacing0,
           child: PriceLabel(cartItem.product.cost * cartItem.amount),
         ),
       ],

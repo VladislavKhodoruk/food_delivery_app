@@ -28,7 +28,7 @@ class CartRepositoryImpl implements CartRepository {
   Future<List<CartItemModel>> getAllItemsFromCart() async {
     return (await _hiveProvider.getAllCartItems())
         .map(
-          (e) => CartItemsMapper.toModel(e),
+          (CartItemEntity cartItem) => CartItemsMapper.toModel(cartItem),
         )
         .toList();
   }

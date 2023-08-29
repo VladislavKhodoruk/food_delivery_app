@@ -22,12 +22,10 @@ CartItemEntity _$CartItemEntityFromJson(Map<String, dynamic> json) {
 mixin _$CartItemEntity {
   @HiveField(0)
   ProductEntity get product => throw _privateConstructorUsedError;
-
   @HiveField(1)
   int get amount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $CartItemEntityCopyWith<CartItemEntity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -38,7 +36,6 @@ abstract class $CartItemEntityCopyWith<$Res> {
   factory $CartItemEntityCopyWith(
           CartItemEntity value, $Res Function(CartItemEntity) then) =
       _$CartItemEntityCopyWithImpl<$Res, CartItemEntity>;
-
   @useResult
   $Res call({@HiveField(0) ProductEntity product, @HiveField(1) int amount});
 
@@ -52,7 +49,6 @@ class _$CartItemEntityCopyWithImpl<$Res, $Val extends CartItemEntity>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -89,7 +85,6 @@ abstract class _$$_CartItemEntityCopyWith<$Res>
   factory _$$_CartItemEntityCopyWith(
           _$_CartItemEntity value, $Res Function(_$_CartItemEntity) then) =
       __$$_CartItemEntityCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({@HiveField(0) ProductEntity product, @HiveField(1) int amount});
@@ -185,11 +180,9 @@ abstract class _CartItemEntity implements CartItemEntity {
   @override
   @HiveField(0)
   ProductEntity get product;
-
   @override
   @HiveField(1)
   int get amount;
-
   @override
   @JsonKey(ignore: true)
   _$$_CartItemEntityCopyWith<_$_CartItemEntity> get copyWith =>

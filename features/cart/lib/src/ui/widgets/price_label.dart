@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class PriceLabel extends StatelessWidget {
@@ -14,23 +15,22 @@ class PriceLabel extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: 5,
+        horizontal: AppPadding.padding5,
       ),
       decoration: BoxDecoration(
         color: theme.cardTheme.color,
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: theme.cardTheme.shadowColor!,
-            spreadRadius: 0,
-            blurRadius: 8,
-            offset: const Offset(0, 2), // changes position of shadow
+            spreadRadius: AppSpreadRadius.spread0,
+            blurRadius: AppBlurRadius.radius8,
+            offset: AppOffset.offset0_2, // changes position of shadow
           ),
         ],
         borderRadius: const BorderRadius.all(
-          Radius.circular(5),
+          Radius.circular(AppBorderRadius.radius5),
         ),
         border: Border.all(
-          width: 1,
           color: theme.colorScheme.tertiary,
         ),
       ),

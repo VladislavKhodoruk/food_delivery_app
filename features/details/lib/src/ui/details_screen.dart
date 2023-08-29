@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import '../bloc/details/details_bloc.dart';
+import 'widgets/bottom_buttons.dart';
 
 @RoutePage()
 class DetailsScreen extends StatelessWidget {
@@ -36,7 +37,6 @@ class _DetailsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final DetailsBloc bloc = context.read<DetailsBloc>();
 
     return BlocBuilder<DetailsBloc, DetailsState>(
       builder: (
@@ -49,16 +49,13 @@ class _DetailsContent extends StatelessWidget {
               context.router.pop();
             }
           },
-          child: Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 65,
-              title: Text(state.cartItem.product.name.capitalizeEveryWord()),
-              leading: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(
-                  Icons.arrow_back_ios_rounded,
-                  color: theme.colorScheme.primary,
-                ),
+          child: AppScaffold(
+            title: Text(state.cartItem.product.name.capitalizeEveryWord()),
+            leading: IconButton(
+              onPressed: () => context.router.pop(),
+              icon: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: theme.colorScheme.primary,
               ),
             ),
             body: Wrapper(
@@ -69,24 +66,29 @@ class _DetailsContent extends StatelessWidget {
                       SliverFillRemaining(
                         hasScrollBody: false,
                         child: Container(
-                          padding: const EdgeInsets.only(bottom: 70),
+                          padding: const EdgeInsets.only(
+                            bottom: AppPadding.padding70,
+                          ),
                           child: Column(
                             children: <Widget>[
                               Stack(
                                 children: [
                                   ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(
+                                      AppBorderRadius.radius5,
+                                    ),
                                     child: Image.network(
                                       state.cartItem.product.image,
                                     ),
                                   ),
                                   Positioned(
-                                    top: 10,
-                                    right: 10,
+                                    top: AppSpacing.spacing10,
+                                    right: AppSpacing.spacing10,
                                     child: TransparentLabel(
-                                      height: 30,
+                                      height: AppSize.size30,
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 5),
+                                        horizontal: AppPadding.padding5,
+                                      ),
                                       child: Text(
                                         '${state.cartItem.product.cost}\$',
                                         style: theme.textTheme.headlineMedium
@@ -98,26 +100,29 @@ class _DetailsContent extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 15),
+                              const SizedBox(
+                                height: AppSpacing.spacing15,
+                              ),
                               Text(
                                 '\t\t\t${state.cartItem.product.description}',
                                 style: theme.textTheme.bodyMedium,
                               ),
-                              const SizedBox(height: 15),
+                              const SizedBox(
+                                height: AppSpacing.spacing15,
+                              ),
                               Divider(
-                                indent: 20,
-                                endIndent: 20,
+                                indent: AppSpacing.spacing20,
+                                endIndent: AppSpacing.spacing20,
                                 color: theme.dividerColor,
                               ),
-                              const SizedBox(height: 15),
+                              const SizedBox(height: AppSpacing.spacing15),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Wrap(
-                                  spacing: 8.0, // gap between adjacent chips
-                                  runSpacing: 4.0, // gap between lines
+                                  spacing: AppSpacing.spacing8,
+                                  runSpacing: AppSpacing.spacing4,
                                   children: List<Widget>.generate(
                                     state.cartItem.product.ingredients.length,
-                                    // place the length of the array here
                                     (int index) {
                                       return TextLabel(
                                         state.cartItem.product
@@ -135,9 +140,14 @@ class _DetailsContent extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: _buttonContent(
-                      theme,
-                      bloc,
+                    child: BottomButtons(
+                      amount: state.cartItem.amount,
+                      onPlusTap: () {
+                        context.read<DetailsBloc>().add(AddItemEvent());
+                      },
+                      onMinusTap: () {
+                        context.read<DetailsBloc>().add(DeleteItemEvent());
+                      },
                     ),
                   ),
                 ],
@@ -146,86 +156,6 @@ class _DetailsContent extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-Widget _buttonContent(
-  ThemeData theme,
-  DetailsBloc bloc,
-) {
-  if (bloc.state.cartItem.amount == 0) {
-    return SizedBox(
-      height: 45,
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          bloc.add(
-            AddItemEvent(),
-          );
-        },
-        child: Icon(
-          Icons.add_rounded,
-          size: 30,
-          color: theme.colorScheme.secondary,
-        ),
-      ),
-    );
-  } else {
-    return SizedBox(
-      height: 45,
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: SizedBox(
-              height: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  bloc.add(
-                    DeleteItemEvent(),
-                  );
-                },
-                child: Icon(
-                  Icons.remove_rounded,
-                  size: 30,
-                  color: theme.colorScheme.secondary,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: theme.scaffoldBackgroundColor.withOpacity(0.7),
-              child: Center(
-                child: Text(
-                  bloc.state.cartItem.amount.toString(),
-                  style: theme.textTheme.labelLarge,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: SizedBox(
-              height: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  bloc.add(
-                    AddItemEvent(),
-                  );
-                },
-                child: Icon(
-                  Icons.add_rounded,
-                  size: 30,
-                  color: theme.colorScheme.secondary,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

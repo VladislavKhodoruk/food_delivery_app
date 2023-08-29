@@ -20,19 +20,23 @@ class ProductItem extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(
+        AppPadding.padding5,
+      ),
       decoration: BoxDecoration(
         color: theme.cardTheme.color,
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: theme.cardTheme.shadowColor!,
-            spreadRadius: 0,
-            blurRadius: 8,
-            offset: const Offset(0, 2), // changes position of shadow
+            spreadRadius: AppSpreadRadius.spread0,
+            blurRadius: AppBlurRadius.radius8,
+            offset: AppOffset.offset0_2, // changes position of shadow
           ),
         ],
         borderRadius: const BorderRadius.all(
-          Radius.circular(5),
+          Radius.circular(
+            AppBorderRadius.radius5,
+          ),
         ),
       ),
       child: Column(
@@ -42,19 +46,23 @@ class ProductItem extends StatelessWidget {
           Stack(
             children: <Widget>[
               ClipRRect(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(
+                  AppBorderRadius.radius5,
+                ),
                 child: Image.network(
                   cartItem.product.image,
                 ),
               ),
               Positioned(
-                top: 5,
-                right: 5,
+                top: AppSpacing.spacing5,
+                right: AppSpacing.spacing5,
                 child: Row(
                   children: <Widget>[
                     TransparentLabel(
-                      height: 28,
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      height: AppSize.size28,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.padding5,
+                      ),
                       child: Text(
                         '${cartItem.product.cost}\$',
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -62,26 +70,30 @@ class ProductItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 5),
+                    const SizedBox(
+                      width: AppSpacing.spacing5,
+                    ),
                     if (cartItem.amount > 0)
                       Row(
                         children: <Widget>[
                           GestureDetector(
                             onTap: onMinusTap,
                             child: TransparentLabel(
-                              height: 28,
-                              width: 28,
+                              height: AppSize.size28,
+                              width: AppSize.size28,
                               child: Icon(
                                 Icons.remove_rounded,
                                 color: theme.colorScheme.secondary,
-                                size: 28.0,
+                                size: AppSize.size28,
                               ),
                             ),
                           ),
-                          const SizedBox(width: 5),
+                          const SizedBox(
+                            width: AppSpacing.spacing5,
+                          ),
                           TransparentLabel(
-                            height: 28,
-                            width: 28,
+                            height: AppSize.size28,
+                            width: AppSize.size28,
                             child: Text(
                               cartItem.amount.toString(),
                               style: theme.textTheme.bodySmall?.copyWith(
@@ -89,18 +101,20 @@ class ProductItem extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 5),
+                          const SizedBox(
+                            width: AppSpacing.spacing5,
+                          ),
                         ],
                       ),
                     GestureDetector(
                       onTap: onPlusTap,
                       child: TransparentLabel(
-                        height: 28,
-                        width: 28,
+                        height: AppSize.size28,
+                        width: AppSize.size28,
                         child: Icon(
                           Icons.add_rounded,
                           color: theme.colorScheme.secondary,
-                          size: 28.0,
+                          size: AppSize.size28,
                         ),
                       ),
                     ),
@@ -110,12 +124,14 @@ class ProductItem extends StatelessWidget {
             ],
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppPadding.padding5,
+            ),
             child: Center(
               child: Text(
                 cartItem.product.name.capitalizeEveryWord(),
                 style: theme.textTheme.bodySmall,
-                maxLines: 1,
+                maxLines: AppMaxLines.max1,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
               ),

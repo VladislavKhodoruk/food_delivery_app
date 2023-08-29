@@ -37,49 +37,51 @@ class _HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final HomeBloc bloc = context.read<HomeBloc>();
 
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (
         BuildContext context,
         HomeState state,
       ) {
-        return Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 65,
-            title: const Text(
-              LocaleKeys.appName,
-            ).tr(),
-            actions: <Widget>[
-              Container(
-                padding: const EdgeInsets.only(right: 4),
-                child: PopupMenu(
-                  selectedOption: state.category,
-                  onPressed: (String category) => {
-                    bloc.add(
-                      SetCategoryEvent(category),
-                    ),
-                  },
-                  menuOptions: state.cartItems
-                      .map(
-                        (CartItemModel cartItem) => cartItem.product.category,
-                      )
-                      .toList(),
-                ),
+        return AppScaffold(
+          title: const Text(
+            LocaleKeys.appName,
+          ).tr(),
+          actions: <Widget>[
+            Container(
+              padding: const EdgeInsets.only(
+                right: AppPadding.padding4,
               ),
-            ],
-          ),
+              child: PopupMenu(
+                selectedOption: state.category,
+                onPressed: (String category) => {
+                  context.read<HomeBloc>().add(
+                        SetCategoryEvent(category),
+                      ),
+                },
+                menuOptions: state.cartItems
+                    .map(
+                      (CartItemModel cartItem) => cartItem.product.category,
+                    )
+                    .toList(),
+              ),
+            ),
+          ],
           body: Wrapper(
             RefreshIndicator(
               backgroundColor: theme.colorScheme.secondary,
               onRefresh: () {
                 return Future<void>(
-                  () => bloc.add(
-                    LoadHomeEvent(),
-                  ),
+                  () => context.read<HomeBloc>().add(
+                        LoadHomeEvent(),
+                      ),
                 );
               },
-              child: _content(state, theme, bloc),
+              child: _content(
+                context,
+                theme,
+                state,
+              ),
             ),
           ),
         );
@@ -89,9 +91,9 @@ class _HomeContent extends StatelessWidget {
 }
 
 Widget _content(
-  HomeState state,
+  BuildContext context,
   ThemeData theme,
-  HomeBloc bloc,
+  HomeState state,
 ) {
   if (state.loadingStatus == LoadingStatus.error) {
     return Center(
@@ -104,8 +106,8 @@ Widget _content(
   if (state.loadingStatus == LoadingStatus.loading) {
     return Center(
       child: SizedBox(
-        width: 50,
-        height: 50,
+        width: AppSize.size50,
+        height: AppSize.size50,
         child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(
             theme.colorScheme.primary,
@@ -125,8 +127,8 @@ Widget _content(
     } else {
       return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
+          crossAxisSpacing: AppSpacing.spacing20,
+          mainAxisSpacing: AppSpacing.spacing20,
           crossAxisCount: 2,
           childAspectRatio: 0.88,
         ),
@@ -137,9 +139,9 @@ Widget _content(
         ) {
           return GestureDetector(
             onTap: () {
-              bloc.add(
-                NavigateOnDetailsEvent(index),
-              );
+              context.read<HomeBloc>().add(
+                    NavigateOnDetailsEvent(index),
+                  );
             },
             child: ProductItem(
               cartItem: state.filteredCartItems[index],
@@ -147,10 +149,14 @@ Widget _content(
                 state.filteredCartItems[index].product.id,
               ),
               onPlusTap: () {
-                bloc.add(AddItemEvent(state.filteredCartItems[index]));
+                context
+                    .read<HomeBloc>()
+                    .add(AddItemEvent(state.filteredCartItems[index]));
               },
               onMinusTap: () {
-                bloc.add(DeleteItemEvent(state.filteredCartItems[index]));
+                context
+                    .read<HomeBloc>()
+                    .add(DeleteItemEvent(state.filteredCartItems[index]));
               },
             ),
           );

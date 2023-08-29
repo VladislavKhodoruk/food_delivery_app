@@ -176,7 +176,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final List<CartItemModel> cartItemsFromStorage =
         await _getAllCartItemsFromStorageUseCase.execute(const NoParams());
 
-    final List<CartItemModel> synchronizedCartItems = cartItems.map((cartItem) {
+    final List<CartItemModel> synchronizedCartItems =
+        cartItems.map((CartItemModel cartItem) {
       int index = cartItemsFromStorage.indexWhere(
           (CartItemModel currentCartItem) =>
               currentCartItem.product.id == cartItem.product.id);

@@ -16,9 +16,9 @@ class ApiProvider {
 
     return productsRawData.docs
         .map(
-          (QueryDocumentSnapshot<Map<String, dynamic>> e) =>
+          (QueryDocumentSnapshot<Map<String, dynamic>> documentSnapshot) =>
               ProductEntity.fromJson(
-            e.data(),
+            documentSnapshot.data(),
           ),
         )
         .toList();

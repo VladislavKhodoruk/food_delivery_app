@@ -11,7 +11,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final GetAllCartItemsFromStorageUseCase _getAllCartItemsFromStorageUseCase;
   final DeleteAllCartItemsFromStorageUseCase
       _deleteAllCartItemsFromStorageUseCase;
-
   final AppRouter _appRouter;
 
   CartBloc({

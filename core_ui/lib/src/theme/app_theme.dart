@@ -2,6 +2,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 export 'app_colors.dart';
+export 'app_constants.dart';
 export 'app_text.dart';
 
 class AppTheme {
@@ -11,9 +12,9 @@ class AppTheme {
         primary: AppColors.smoulderingRed,
         secondary: AppColors.white,
         secondaryContainer: AppColors.white,
-        tertiary: AppColors.costumeBlue.withOpacity(0.5),
+        tertiary: AppColors.costumeBlue.withOpacity(AppOpacity.opacity0_5),
         background: AppColors.white,
-        surfaceTint: AppColors.knightArmor.withOpacity(0.7),
+        surfaceTint: AppColors.knightArmor.withOpacity(AppOpacity.opacity0_7),
       ),
       iconTheme: const IconThemeData(
         color: AppColors.knightArmor,
@@ -28,20 +29,20 @@ class AppTheme {
       cardTheme: CardTheme(
         color: AppColors.white,
         shadowColor: AppColors.costumeBlue.withOpacity(
-          0.3,
+          AppOpacity.opacity0_3,
         ),
       ),
       appBarTheme: AppBarTheme(
-        toolbarHeight: 65,
+        toolbarHeight: AppSize.size65,
         surfaceTintColor: Colors.transparent,
         titleTextStyle: AppText.cabin24Bold.copyWith(
           color: AppColors.smoulderingRed,
         ),
         centerTitle: true,
         shadowColor: AppColors.knightArmor.withOpacity(
-          0.3,
+          AppOpacity.opacity0_3,
         ),
-        elevation: 3,
+        elevation: AppElevation.elevation3,
         backgroundColor: AppColors.white,
       ),
       textTheme: TextTheme(
@@ -79,7 +80,7 @@ class AppTheme {
         ),
         trackOutlineColor: MaterialStateProperty.all(
           AppColors.costumeBlue.withOpacity(
-            0.25,
+            AppOpacity.opacity0_25,
           ),
         ),
       ),
@@ -88,7 +89,9 @@ class AppTheme {
           backgroundColor: AppColors.smoulderingRed,
           foregroundColor: AppColors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(
+              AppBorderRadius.radius5,
+            ),
           ),
           splashFactory: InkRipple.splashFactory,
         ),
@@ -105,7 +108,7 @@ class AppTheme {
         tertiary: AppColors.eerieBlack,
         background: AppColors.blackLacquer,
         surfaceTint: AppColors.knightArmor.withOpacity(
-          0.7,
+          AppOpacity.opacity0_7,
         ),
       ),
       iconTheme: const IconThemeData(
@@ -118,19 +121,17 @@ class AppTheme {
       useMaterial3: true,
       primaryColor: AppColors.heatWave,
       dividerColor: AppColors.heatWave,
-      cardTheme: CardTheme(
+      cardTheme: const CardTheme(
         color: AppColors.blackLacquer,
-        shadowColor: AppColors.eerieBlack.withOpacity(
-          1,
-        ),
+        shadowColor: AppColors.eerieBlack,
       ),
       appBarTheme: AppBarTheme(
-        toolbarHeight: 65,
+        toolbarHeight: AppSize.size65,
         surfaceTintColor: Colors.transparent,
         titleTextStyle: AppText.cabin24Bold.copyWith(color: AppColors.heatWave),
         centerTitle: true,
         shadowColor: AppColors.eerieBlack,
-        elevation: 3,
+        elevation: AppElevation.elevation3,
         backgroundColor: AppColors.eerieBlack,
       ),
       textTheme: TextTheme(
@@ -175,7 +176,9 @@ class AppTheme {
           backgroundColor: AppColors.heatWave,
           foregroundColor: AppColors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(
+              AppBorderRadius.radius5,
+            ),
           ),
           splashFactory: InkRipple.splashFactory,
         ),

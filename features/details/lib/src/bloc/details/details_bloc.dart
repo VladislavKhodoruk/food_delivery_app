@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'details_event.dart';
-
 part 'details_state.dart';
 
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {

@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
@@ -36,14 +37,18 @@ class CartButton extends StatelessWidget {
               BuildContext context,
               MainState state,
             ) {
-              Bloc.observer = MainBlocObserver(context: context);
+              Bloc.observer = MainBlocObserver(context.read<MainBloc>());
               return state.totalCost > 0
                   ? Positioned(
                       left: 57,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.padding2,
+                        ),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
+                          borderRadius: BorderRadius.circular(
+                            AppBorderRadius.radius7,
+                          ),
                           color: theme.colorScheme.secondaryContainer,
                           border: Border.all(
                             color: theme.iconTheme.color as Color,

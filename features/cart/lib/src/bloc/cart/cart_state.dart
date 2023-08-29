@@ -6,7 +6,7 @@ class CartState {
   const CartState({required this.cartItems});
 
   CartState.empty({
-    this.cartItems = const [],
+    this.cartItems = const <CartItemModel>[],
   });
 
   CartState copyWith({

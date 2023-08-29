@@ -18,8 +18,8 @@ class HomeState {
   HomeState.empty({
     this.loadingStatus = LoadingStatus.loading,
     this.category = '',
-    this.cartItems = const [],
-    this.filteredCartItems = const [],
+    this.cartItems = const <CartItemModel>[],
+    this.filteredCartItems = const <CartItemModel>[],
     this.errorMessage = '',
   });
 

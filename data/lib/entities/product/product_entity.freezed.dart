@@ -22,27 +22,20 @@ ProductEntity _$ProductEntityFromJson(Map<String, dynamic> json) {
 mixin _$ProductEntity {
   @HiveField(0)
   String get name => throw _privateConstructorUsedError;
-
   @HiveField(1)
   String get id => throw _privateConstructorUsedError;
-
   @HiveField(2)
   String get description => throw _privateConstructorUsedError;
-
   @HiveField(3)
   double get cost => throw _privateConstructorUsedError;
-
   @HiveField(4)
   String get image => throw _privateConstructorUsedError;
-
   @HiveField(5)
   String get category => throw _privateConstructorUsedError;
-
   @HiveField(6)
   List<String> get ingredients => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ProductEntityCopyWith<ProductEntity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -53,7 +46,6 @@ abstract class $ProductEntityCopyWith<$Res> {
   factory $ProductEntityCopyWith(
           ProductEntity value, $Res Function(ProductEntity) then) =
       _$ProductEntityCopyWithImpl<$Res, ProductEntity>;
-
   @useResult
   $Res call(
       {@HiveField(0) String name,
@@ -125,7 +117,6 @@ abstract class _$$_ProductEntityCopyWith<$Res>
   factory _$$_ProductEntityCopyWith(
           _$_ProductEntity value, $Res Function(_$_ProductEntity) then) =
       __$$_ProductEntityCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -225,7 +216,6 @@ class _$_ProductEntity implements _ProductEntity {
   @HiveField(5)
   final String category;
   final List<String> _ingredients;
-
   @override
   @HiveField(6)
   List<String> get ingredients {
@@ -292,27 +282,21 @@ abstract class _ProductEntity implements ProductEntity {
   @override
   @HiveField(0)
   String get name;
-
   @override
   @HiveField(1)
   String get id;
-
   @override
   @HiveField(2)
   String get description;
-
   @override
   @HiveField(3)
   double get cost;
-
   @override
   @HiveField(4)
   String get image;
-
   @override
   @HiveField(5)
   String get category;
-
   @override
   @HiveField(6)
   List<String> get ingredients;

@@ -1,8 +1,10 @@
-import 'package:cart/src/ui/widgets/cart_item.dart';
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
+
+import 'widgets/cart_item.dart';
 
 @RoutePage()
 class CartScreen extends StatelessWidget {
@@ -35,26 +37,22 @@ class _CartContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final CartBloc bloc = context.read<CartBloc>();
 
     return BlocBuilder<CartBloc, CartState>(
       builder: (
         BuildContext context,
         CartState state,
       ) {
-        return Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 65,
-            title: const Text(LocaleKeys.mainPage_cartScreen_name).tr(),
-          ),
+        return AppScaffold(
+          title: const Text(LocaleKeys.mainPage_cartScreen_name).tr(),
           body: Container(
             padding: const EdgeInsets.only(
-              left: 18,
-              top: 13,
-              right: 13,
-              bottom: 18,
+              left: AppPadding.padding18,
+              top: AppPadding.padding13,
+              right: AppPadding.padding13,
+              bottom: AppPadding.padding18,
             ),
-            child: _content(state, theme, bloc),
+            child: _content(state, theme, context),
           ),
         );
       },
@@ -65,7 +63,7 @@ class _CartContent extends StatelessWidget {
 Widget _content(
   CartState state,
   ThemeData theme,
-  CartBloc bloc,
+  BuildContext context,
 ) {
   if (state.cartItems.isEmpty) {
     return Center(
@@ -79,33 +77,35 @@ Widget _content(
       children: <Widget>[
         ListView.separated(
           itemCount: state.cartItems.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 11),
+          separatorBuilder: (_, __) => const SizedBox(
+            height: AppSpacing.spacing11,
+          ),
           itemBuilder: (BuildContext context, int index) {
             return CartItem(
               cartItem: state.cartItems[index],
               onPlusTap: () {
-                bloc.add(AddCartItemEvent(state.cartItems[index]));
+                context
+                    .read<CartBloc>()
+                    .add(AddCartItemEvent(state.cartItems[index]));
               },
               onMinusTap: () {
-                bloc.add(DeleteCartItemEvent(state.cartItems[index]));
+                context
+                    .read<CartBloc>()
+                    .add(DeleteCartItemEvent(state.cartItems[index]));
               },
             );
           },
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: SizedBox(
-            height: 45,
+          child: AppButton(
+            height: AppSize.size45,
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                bloc.add(
-                  DeleteAllCartItemsEvent(),
-                );
-              },
-              child: Text(
-                LocaleKeys.mainPage_cartScreen_clearCart.tr(),
-              ),
+            onPressed: () {
+              context.read<CartBloc>().add(DeleteAllCartItemsEvent());
+            },
+            child: Text(
+              LocaleKeys.mainPage_cartScreen_clearCart.tr(),
             ),
           ),
         ),

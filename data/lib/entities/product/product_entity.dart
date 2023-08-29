@@ -6,7 +6,7 @@ part 'product_entity.freezed.dart';
 part 'product_entity.g.dart';
 
 @freezed
-@HiveType(typeId: 0, adapterName: 'ProductEntityAdapter')
+@HiveType(typeId: 0)
 class ProductEntity with _$ProductEntity {
   factory ProductEntity({
     @HiveField(0) required String name,
