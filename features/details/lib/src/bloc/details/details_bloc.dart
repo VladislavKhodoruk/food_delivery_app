@@ -26,13 +26,11 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     AddItemEvent event,
     Emitter<DetailsState> emit,
   ) async {
-    CartItemModel newItem =
-        state.cartItem.copyWith(amount: state.cartItem.amount + 1);
-    _addCartItemToStorageUseCase.execute(newItem);
+    CartItemModel eventCartItem = state.cartItem;
+    eventCartItem.incrementAmount();
+    _addCartItemToStorageUseCase.execute(eventCartItem);
     emit(
-      state.copyWith(
-        cartItem: newItem,
-      ),
+      state.copyWith(),
     );
   }
 
@@ -40,17 +38,15 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     DeleteItemEvent event,
     Emitter<DetailsState> emit,
   ) async {
-    CartItemModel newItem =
-        state.cartItem.copyWith(amount: state.cartItem.amount - 1);
-    if (newItem.amount > 0) {
-      await _addCartItemToStorageUseCase.execute(newItem);
+    CartItemModel eventCartItem = state.cartItem;
+    eventCartItem.decrementAmount();
+    if (eventCartItem.amount > 0) {
+      await _addCartItemToStorageUseCase.execute(eventCartItem);
     } else {
       await _deleteCartItemFromStorageUseCase.execute(state.cartItem);
     }
     emit(
-      state.copyWith(
-        cartItem: newItem,
-      ),
+      state.copyWith(),
     );
   }
 }

@@ -131,16 +131,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     AddItemEvent event,
     Emitter<HomeState> emit,
   ) async {
-    List<CartItemModel> newItems = state.filteredCartItems;
     final CartItemModel eventCartItem = event.cartItem;
-    final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
-        currentCartItem.product.id == eventCartItem.product.id);
-    newItems[index] = eventCartItem.copyWith(amount: eventCartItem.amount + 1);
-    await _addCartItemToStorageUseCase.execute(newItems[index]);
+    eventCartItem.incrementAmount();
+    await _addCartItemToStorageUseCase.execute(eventCartItem);
     emit(
-      state.copyWith(
-        filteredCartItems: newItems,
-      ),
+      state.copyWith(),
     );
   }
 
@@ -148,23 +143,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     DeleteItemEvent event,
     Emitter<HomeState> emit,
   ) async {
-    List<CartItemModel> newItems = state.filteredCartItems;
     final CartItemModel eventCartItem = event.cartItem;
-    final CartItemModel newItem =
-        eventCartItem.copyWith(amount: eventCartItem.amount - 1);
+    eventCartItem.decrementAmount();
 
-    if (newItem.amount > 0) {
-      await _addCartItemToStorageUseCase.execute(newItem);
+    if (eventCartItem.amount > 0) {
+      await _addCartItemToStorageUseCase.execute(eventCartItem);
     } else {
-      await _deleteCartItemFromStorageUseCase.execute(eventCartItem);
+      state.cartItems.removeWhere((CartItemModel currentCartItem) =>
+          currentCartItem.product.id == eventCartItem.product.id);
+      await _deleteCartItemFromStorageUseCase.execute(event.cartItem);
     }
-    final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
-        currentCartItem.product.id == eventCartItem.product.id);
-    newItems[index] = eventCartItem.copyWith(amount: newItem.amount);
     emit(
-      state.copyWith(
-        filteredCartItems: newItems,
-      ),
+      state.copyWith(),
     );
   }
 

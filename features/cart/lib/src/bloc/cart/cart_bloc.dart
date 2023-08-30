@@ -51,16 +51,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     AddCartItemEvent event,
     Emitter<CartState> emit,
   ) async {
-    List<CartItemModel> newItems = state.cartItems;
     final CartItemModel eventCartItem = event.cartItem;
-    final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
-        currentCartItem.product.id == eventCartItem.product.id);
-    newItems[index] = eventCartItem.copyWith(amount: eventCartItem.amount + 1);
-    await _addCartItemToStorageUseCase.execute(newItems[index]);
+    eventCartItem.incrementAmount();
+    await _addCartItemToStorageUseCase.execute(eventCartItem);
     emit(
-      state.copyWith(
-        cartItems: newItems,
-      ),
+      state.copyWith(),
     );
   }
 
@@ -68,25 +63,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     DeleteCartItemEvent event,
     Emitter<CartState> emit,
   ) async {
-    List<CartItemModel> newItems = state.cartItems;
     final CartItemModel eventCartItem = event.cartItem;
-    final CartItemModel newItem =
-        eventCartItem.copyWith(amount: eventCartItem.amount - 1);
+    eventCartItem.decrementAmount();
 
-    if (newItem.amount > 0) {
-      await _addCartItemToStorageUseCase.execute(newItem);
-      final int index = newItems.indexWhere((CartItemModel currentCartItem) =>
-          currentCartItem.product.id == eventCartItem.product.id);
-      newItems[index] = eventCartItem.copyWith(amount: newItem.amount);
+    if (eventCartItem.amount > 0) {
+      await _addCartItemToStorageUseCase.execute(eventCartItem);
     } else {
+      state.cartItems.removeWhere((CartItemModel currentCartItem) =>
+          currentCartItem.product.id == eventCartItem.product.id);
       await _deleteCartItemFromStorageUseCase.execute(eventCartItem);
-      newItems.remove(eventCartItem);
     }
 
     emit(
-      state.copyWith(
-        cartItems: newItems,
-      ),
+      state.copyWith(),
     );
   }
 
@@ -107,7 +96,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     await _deleteAllCartItemsFromStorageUseCase.execute(const NoParams());
     emit(
-      state.copyWith(cartItems: []),
+      state.copyWith(
+        cartItems: <CartItemModel>[],
+      ),
     );
   }
 

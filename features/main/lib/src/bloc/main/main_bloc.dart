@@ -24,9 +24,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     final List<CartItemModel> cartItems =
         await _getAllCartItemsFromStorageUseCase.execute(const NoParams());
     final double newTotalCost = cartItems.fold(
-        0,
-        (totalCost, element) =>
-            totalCost + element.amount * element.product.cost);
+        0, (totalCost, element) => totalCost + element.totalCost);
     emit(
       state.copyWith(
         totalCost: newTotalCost,

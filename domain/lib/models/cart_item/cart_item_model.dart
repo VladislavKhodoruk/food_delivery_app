@@ -1,12 +1,33 @@
 import 'package:domain/domain.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:equatable/equatable.dart';
 
-part 'cart_item_model.freezed.dart';
+class CartItemModel extends Equatable {
+  final ProductModel product;
+  int _amount;
 
-@freezed
-class CartItemModel with _$CartItemModel {
-  factory CartItemModel({
-    required ProductModel product,
+  CartItemModel({
+    required this.product,
     required int amount,
-  }) = _CartItemModel;
+  }) : _amount = amount;
+
+  int get amount => _amount;
+
+  void incrementAmount() => _amount++;
+
+  void decrementAmount() => _amount--;
+
+  double get totalCost => _amount * product.cost;
+
+  CartItemModel copyWith({
+    ProductModel? product,
+    int? amount,
+  }) {
+    return CartItemModel(
+      product: product ?? this.product,
+      amount: amount ?? _amount,
+    );
+  }
+
+  @override
+  List<Object?> get props => [_amount];
 }
