@@ -107,7 +107,7 @@ class CartItem extends StatelessWidget {
         ),
         Positioned(
           right: AppSpacing.spacing0,
-          child: PriceLabel(cartItem.product.cost * cartItem.amount),
+          child: PriceLabel(cartItem.totalCost),
         ),
       ],
     );
