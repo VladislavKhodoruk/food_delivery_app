@@ -2,6 +2,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 export 'app_colors.dart';
+export 'app_constants.dart';
 export 'app_text.dart';
 
 class AppTheme {
@@ -11,9 +12,9 @@ class AppTheme {
         primary: AppColors.smoulderingRed,
         secondary: AppColors.white,
         secondaryContainer: AppColors.white,
-        tertiary: AppColors.costumeBlue.withOpacity(0.5),
+        tertiary: AppColors.costumeBlue.withOpacity(AppOpacity.opacity0_5),
         background: AppColors.white,
-        surfaceTint: AppColors.knightArmor.withOpacity(0.7),
+        surfaceTint: AppColors.knightArmor.withOpacity(AppOpacity.opacity0_7),
       ),
       iconTheme: const IconThemeData(
         color: AppColors.knightArmor,
@@ -28,20 +29,20 @@ class AppTheme {
       cardTheme: CardTheme(
         color: AppColors.white,
         shadowColor: AppColors.costumeBlue.withOpacity(
-          0.3,
+          AppOpacity.opacity0_3,
         ),
       ),
       appBarTheme: AppBarTheme(
-        toolbarHeight: 65,
+        toolbarHeight: AppSize.size65,
         surfaceTintColor: Colors.transparent,
         titleTextStyle: AppText.cabin24Bold.copyWith(
           color: AppColors.smoulderingRed,
         ),
         centerTitle: true,
         shadowColor: AppColors.knightArmor.withOpacity(
-          0.3,
+          AppOpacity.opacity0_3,
         ),
-        elevation: 3,
+        elevation: AppElevation.elevation3,
         backgroundColor: AppColors.white,
       ),
       textTheme: TextTheme(
@@ -51,16 +52,22 @@ class AppTheme {
         headlineMedium: AppText.cabin20Regular.copyWith(
           color: AppColors.white,
         ),
-        labelLarge: AppText.cabin14Regular.copyWith(
+        headlineSmall: AppText.cabin18Regular.copyWith(
+          color: AppColors.shoeWax,
+        ),
+        labelLarge: AppText.cabin24Regular.copyWith(
+          color: AppColors.smoulderingRed,
+        ),
+        labelMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.shoeWax,
         ),
         labelSmall: AppText.cabin10SemiBold.copyWith(
           color: AppColors.smoulderingRed,
         ),
-        bodyLarge: AppText.cabin14Regular.copyWith(
+        bodyMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.shoeWax,
         ),
-        bodyMedium: AppText.cabin14SemiBold.copyWith(
+        bodySmall: AppText.cabin14SemiBold.copyWith(
           color: AppColors.shoeWax,
         ),
       ),
@@ -73,8 +80,20 @@ class AppTheme {
         ),
         trackOutlineColor: MaterialStateProperty.all(
           AppColors.costumeBlue.withOpacity(
-            0.25,
+            AppOpacity.opacity0_25,
           ),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.smoulderingRed,
+          foregroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              AppBorderRadius.radius5,
+            ),
+          ),
+          splashFactory: InkRipple.splashFactory,
         ),
       ),
     );
@@ -89,7 +108,7 @@ class AppTheme {
         tertiary: AppColors.eerieBlack,
         background: AppColors.blackLacquer,
         surfaceTint: AppColors.knightArmor.withOpacity(
-          0.7,
+          AppOpacity.opacity0_7,
         ),
       ),
       iconTheme: const IconThemeData(
@@ -102,19 +121,17 @@ class AppTheme {
       useMaterial3: true,
       primaryColor: AppColors.heatWave,
       dividerColor: AppColors.heatWave,
-      cardTheme: CardTheme(
+      cardTheme: const CardTheme(
         color: AppColors.blackLacquer,
-        shadowColor: AppColors.eerieBlack.withOpacity(
-          1,
-        ),
+        shadowColor: AppColors.eerieBlack,
       ),
       appBarTheme: AppBarTheme(
-        toolbarHeight: 65,
+        toolbarHeight: AppSize.size65,
         surfaceTintColor: Colors.transparent,
         titleTextStyle: AppText.cabin24Bold.copyWith(color: AppColors.heatWave),
         centerTitle: true,
         shadowColor: AppColors.eerieBlack,
-        elevation: 3,
+        elevation: AppElevation.elevation3,
         backgroundColor: AppColors.eerieBlack,
       ),
       textTheme: TextTheme(
@@ -124,16 +141,22 @@ class AppTheme {
         headlineMedium: AppText.cabin20Regular.copyWith(
           color: AppColors.eerieBlack,
         ),
-        labelLarge: AppText.cabin14Regular.copyWith(
+        headlineSmall: AppText.cabin18Regular.copyWith(
+          color: AppColors.christmasSilver,
+        ),
+        labelLarge: AppText.cabin24Regular.copyWith(
+          color: AppColors.heatWave,
+        ),
+        labelMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.christmasSilver,
         ),
         labelSmall: AppText.cabin10SemiBold.copyWith(
           color: AppColors.heatWave,
         ),
-        bodyLarge: AppText.cabin14Regular.copyWith(
+        bodyMedium: AppText.cabin14Regular.copyWith(
           color: AppColors.white,
         ),
-        bodyMedium: AppText.cabin14SemiBold.copyWith(
+        bodySmall: AppText.cabin14SemiBold.copyWith(
           color: AppColors.white,
         ),
       ),
@@ -146,6 +169,18 @@ class AppTheme {
         ),
         trackOutlineColor: MaterialStateProperty.all(
           AppColors.eerieBlack,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.heatWave,
+          foregroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              AppBorderRadius.radius5,
+            ),
+          ),
+          splashFactory: InkRipple.splashFactory,
         ),
       ),
     );

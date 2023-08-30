@@ -1,8 +1,8 @@
-import 'package:core/core.dart';
 import 'package:cart/cart.dart';
+import 'package:core/core.dart';
 import 'package:details/details.dart';
-import 'package:main/main.dart';
 import 'package:home/home.dart';
+import 'package:main/main.dart';
 import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 

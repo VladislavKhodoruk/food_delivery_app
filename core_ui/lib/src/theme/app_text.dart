@@ -9,8 +9,20 @@ class AppText {
     fontFamily: _cabinFontFamily,
   );
 
+  static const TextStyle cabin24Regular = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    fontFamily: _cabinFontFamily,
+  );
+
   static const TextStyle cabin20Regular = TextStyle(
     fontSize: 20,
+    fontWeight: FontWeight.w400,
+    fontFamily: _cabinFontFamily,
+  );
+
+  static const TextStyle cabin18Regular = TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.w400,
     fontFamily: _cabinFontFamily,
   );

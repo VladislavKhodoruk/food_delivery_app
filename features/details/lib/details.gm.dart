@@ -10,8 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i2;
 import 'package:details/src/ui/details_screen.dart' as _i1;
-import 'package:domain/models/product/product_model.dart' as _i4;
-import 'package:flutter/material.dart' as _i3;
+import 'package:domain/domain.dart' as _i3;
+import 'package:flutter/material.dart' as _i4;
 
 abstract class $DetailsModule extends _i2.AutoRouterModule {
   @override
@@ -21,8 +21,8 @@ abstract class $DetailsModule extends _i2.AutoRouterModule {
       return _i2.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.DetailsScreen(
+          cartItem: args.cartItem,
           key: args.key,
-          product: args.product,
         ),
       );
     }
@@ -33,14 +33,14 @@ abstract class $DetailsModule extends _i2.AutoRouterModule {
 /// [_i1.DetailsScreen]
 class DetailsRoute extends _i2.PageRouteInfo<DetailsRouteArgs> {
   DetailsRoute({
-    _i3.Key? key,
-    required _i4.ProductModel product,
+    required _i3.CartItemModel cartItem,
+    _i4.Key? key,
     List<_i2.PageRouteInfo>? children,
   }) : super(
           DetailsRoute.name,
           args: DetailsRouteArgs(
+            cartItem: cartItem,
             key: key,
-            product: product,
           ),
           initialChildren: children,
         );
@@ -53,16 +53,16 @@ class DetailsRoute extends _i2.PageRouteInfo<DetailsRouteArgs> {
 
 class DetailsRouteArgs {
   const DetailsRouteArgs({
+    required this.cartItem,
     this.key,
-    required this.product,
   });
 
-  final _i3.Key? key;
+  final _i3.CartItemModel cartItem;
 
-  final _i4.ProductModel product;
+  final _i4.Key? key;
 
   @override
   String toString() {
-    return 'DetailsRouteArgs{key: $key, product: $product}';
+    return 'DetailsRouteArgs{cartItem: $cartItem, key: $key}';
   }
 }

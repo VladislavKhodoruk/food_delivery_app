@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class PopupMenu extends StatelessWidget {
@@ -7,10 +8,10 @@ class PopupMenu extends StatelessWidget {
   final String selectedOption;
 
   const PopupMenu({
-    super.key,
     required this.menuOptions,
     required this.onPressed,
     required this.selectedOption,
+    super.key,
   });
 
   List<String> getOptions() {
@@ -32,7 +33,7 @@ class PopupMenu extends StatelessWidget {
       color: theme.colorScheme.secondaryContainer,
       surfaceTintColor: Colors.transparent,
       shadowColor: theme.colorScheme.tertiary,
-      elevation: 5,
+      elevation: AppElevation.elevation5,
       icon: Icon(
         Icons.menu_rounded,
         color: theme.colorScheme.primary,
@@ -45,7 +46,7 @@ class PopupMenu extends StatelessWidget {
                 item.isNotEmpty
                     ? item.capitalize()
                     : LocaleKeys.mainPage_homeScreen_allProductsMenuItem.tr(),
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodySmall,
               ),
             ),
           )

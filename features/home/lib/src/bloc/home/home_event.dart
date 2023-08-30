@@ -17,3 +17,25 @@ class SetCategoryEvent extends HomeEvent {
 class FilterHomeEvent extends HomeEvent {
   FilterHomeEvent();
 }
+
+class NavigateOnDetailsEvent extends HomeEvent {
+  final int index;
+
+  NavigateOnDetailsEvent(this.index);
+}
+
+class AddItemEvent extends HomeEvent {
+  final CartItemModel cartItem;
+
+  AddItemEvent(this.cartItem);
+}
+
+class DeleteItemEvent extends HomeEvent {
+  final CartItemModel cartItem;
+
+  DeleteItemEvent(this.cartItem);
+}
+
+class SynchronizeWithStorageEvent extends HomeEvent {
+  SynchronizeWithStorageEvent();
+}

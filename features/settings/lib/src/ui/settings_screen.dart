@@ -11,17 +11,13 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final SettingsBloc bloc = context.read<SettingsBloc>();
 
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (_, SettingsState state) {
-        return Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 65,
-            title: const Text(
-              LocaleKeys.mainPage_settingsScreen_name,
-            ).tr(),
-          ),
+        return AppScaffold(
+          title: const Text(
+            LocaleKeys.mainPage_settingsScreen_name,
+          ).tr(),
           body: Wrapper(
             Column(
               children: <Widget>[
@@ -30,42 +26,50 @@ class SettingsScreen extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       LocaleKeys.mainPage_settingsScreen_theme.tr(),
-                      style: theme.textTheme.bodyLarge,
+                      style: theme.textTheme.bodyMedium,
                     ),
                     Row(
                       children: <Widget>[
                         Text(
                           LocaleKeys.mainPage_settingsScreen_lightTheme.tr(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(
+                          width: AppSpacing.spacing10,
+                        ),
                         Switch(
                           value: state.darkMode,
-                          onChanged: (_) => bloc.add(SwitchThemeEvent()),
+                          onChanged: (_) => context
+                              .read<SettingsBloc>()
+                              .add(SwitchThemeEvent()),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(
+                          width: AppSpacing.spacing10,
+                        ),
                         Text(
                           LocaleKeys.mainPage_settingsScreen_darkTheme.tr(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
                       ],
                     )
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(
+                  height: AppSpacing.spacing20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       LocaleKeys.mainPage_settingsScreen_language.tr(),
-                      style: theme.textTheme.bodyLarge,
+                      style: theme.textTheme.bodyMedium,
                     ),
                     Row(
                       children: <Widget>[
                         Text(
                           LanguageCode.en.name.toUpperCase(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
                         Radio(
                           visualDensity: const VisualDensity(
@@ -83,10 +87,12 @@ class SettingsScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(
+                          width: AppSpacing.spacing15,
+                        ),
                         Text(
                           LanguageCode.be.name.toUpperCase(),
-                          style: theme.textTheme.bodyLarge,
+                          style: theme.textTheme.bodyMedium,
                         ),
                         Radio(
                           visualDensity: const VisualDensity(
@@ -105,7 +111,7 @@ class SettingsScreen extends StatelessWidget {
                           },
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ],

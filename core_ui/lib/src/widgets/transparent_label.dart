@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class TransparentLabel extends StatelessWidget {
@@ -28,7 +29,7 @@ class TransparentLabel extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceTint,
         borderRadius: const BorderRadius.all(
-          Radius.circular(5),
+          Radius.circular(AppBorderRadius.radius5),
         ),
       ),
       child: Center(child: child),

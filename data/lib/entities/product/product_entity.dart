@@ -1,19 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 
 part 'product_entity.freezed.dart';
 part 'product_entity.g.dart';
 
 @freezed
+@HiveType(typeId: 0)
 class ProductEntity with _$ProductEntity {
   factory ProductEntity({
-    required String name,
-    required String id,
-    required String description,
-    required double cost,
-    required String image,
-    required String category,
-    required List<String> ingredients,
+    @HiveField(0) required String name,
+    @HiveField(1) required String id,
+    @HiveField(2) required String description,
+    @HiveField(3) required double cost,
+    @HiveField(4) required String image,
+    @HiveField(5) required String category,
+    @HiveField(6) required List<String> ingredients,
   }) = _ProductEntity;
 
   factory ProductEntity.fromFirebase(

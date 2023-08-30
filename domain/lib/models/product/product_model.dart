@@ -1,16 +1,19 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ProductModel {
+  final String name;
+  final String id;
+  final String description;
+  final double cost;
+  final String image;
+  final String category;
+  final List<String> ingredients;
 
-part 'product_model.freezed.dart';
-
-@freezed
-class ProductModel with _$ProductModel {
-  factory ProductModel({
-    required String name,
-    required String id,
-    required String description,
-    required double cost,
-    required String image,
-    required String category,
-    required List<String> ingredients,
-  }) = _ProductModel;
+  ProductModel({
+    required this.name,
+    required this.id,
+    required this.description,
+    required this.cost,
+    required this.image,
+    required this.category,
+    required this.ingredients,
+  });
 }

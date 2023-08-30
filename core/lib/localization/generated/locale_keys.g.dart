@@ -19,6 +19,7 @@ abstract class LocaleKeys {
       'mainPage.orderHistoryScreen.name';
   static const mainPage_orderHistoryScreen = 'mainPage.orderHistoryScreen';
   static const mainPage_cartScreen_name = 'mainPage.cartScreen.name';
+  static const mainPage_cartScreen_clearCart = 'mainPage.cartScreen.clearCart';
   static const mainPage_cartScreen = 'mainPage.cartScreen';
   static const mainPage_common_noProducts = 'mainPage.common.noProducts';
   static const mainPage_common = 'mainPage.common';

@@ -1,15 +1,15 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:main/src/ui/cart_button.dart';
+import 'package:main/src/ui/widgets/cart_button.dart';
 
 class MainBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final void Function(int) onTap;
 
   const MainBottomNavigationBar({
-    super.key,
     required this.currentIndex,
     required this.onTap,
+    super.key,
   });
 
   @override
@@ -56,8 +56,8 @@ class MainBottomNavigationBar extends StatelessWidget {
           label: LocaleKeys.mainPage_orderHistoryScreen_name.tr(),
         ),
         BottomNavigationBarItem(
-          icon: CartButton(),
-          activeIcon: CartButton(
+          icon: const CartButton(),
+          activeIcon: const CartButton(
             isActive: true,
           ),
           label: LocaleKeys.mainPage_cartScreen_name.tr(),

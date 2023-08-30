@@ -1,6 +1,6 @@
 import 'package:domain/models/product/product_model.dart';
 
-import '../entity/product/product_entity.dart';
+import '../entities/product/product_entity.dart';
 
 abstract class ProductMapper {
   static ProductEntity toEntity(ProductModel model) {

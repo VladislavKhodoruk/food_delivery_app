@@ -1,8 +1,8 @@
-import 'package:data/entity/product/product_entity.dart';
-import 'package:data/providers/api_provider.dart';
-import 'package:domain/repositories/products_repository.dart';
-import 'package:domain/models/product/product_model.dart';
-import 'package:data/mappers/products_mapper.dart';
+import 'package:domain/domain.dart';
+
+import '../entities/product/product_entity.dart';
+import '../mappers/products_mapper.dart';
+import '../providers/remote/api_provider.dart';
 
 class ProductsRepositoryImpl implements ProductsRepository {
   final ApiProvider _apiProvider;

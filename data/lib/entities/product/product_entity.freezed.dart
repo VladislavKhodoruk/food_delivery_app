@@ -20,12 +20,19 @@ ProductEntity _$ProductEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductEntity {
+  @HiveField(0)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get description => throw _privateConstructorUsedError;
+  @HiveField(3)
   double get cost => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get image => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get category => throw _privateConstructorUsedError;
+  @HiveField(6)
   List<String> get ingredients => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,13 +48,13 @@ abstract class $ProductEntityCopyWith<$Res> {
       _$ProductEntityCopyWithImpl<$Res, ProductEntity>;
   @useResult
   $Res call(
-      {String name,
-      String id,
-      String description,
-      double cost,
-      String image,
-      String category,
-      List<String> ingredients});
+      {@HiveField(0) String name,
+      @HiveField(1) String id,
+      @HiveField(2) String description,
+      @HiveField(3) double cost,
+      @HiveField(4) String image,
+      @HiveField(5) String category,
+      @HiveField(6) List<String> ingredients});
 }
 
 /// @nodoc
@@ -113,13 +120,13 @@ abstract class _$$_ProductEntityCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String id,
-      String description,
-      double cost,
-      String image,
-      String category,
-      List<String> ingredients});
+      {@HiveField(0) String name,
+      @HiveField(1) String id,
+      @HiveField(2) String description,
+      @HiveField(3) double cost,
+      @HiveField(4) String image,
+      @HiveField(5) String category,
+      @HiveField(6) List<String> ingredients});
 }
 
 /// @nodoc
@@ -178,32 +185,39 @@ class __$$_ProductEntityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProductEntity implements _ProductEntity {
   _$_ProductEntity(
-      {required this.name,
-      required this.id,
-      required this.description,
-      required this.cost,
-      required this.image,
-      required this.category,
-      required final List<String> ingredients})
+      {@HiveField(0) required this.name,
+      @HiveField(1) required this.id,
+      @HiveField(2) required this.description,
+      @HiveField(3) required this.cost,
+      @HiveField(4) required this.image,
+      @HiveField(5) required this.category,
+      @HiveField(6) required final List<String> ingredients})
       : _ingredients = ingredients;
 
   factory _$_ProductEntity.fromJson(Map<String, dynamic> json) =>
       _$$_ProductEntityFromJson(json);
 
   @override
+  @HiveField(0)
   final String name;
   @override
+  @HiveField(1)
   final String id;
   @override
+  @HiveField(2)
   final String description;
   @override
+  @HiveField(3)
   final double cost;
   @override
+  @HiveField(4)
   final String image;
   @override
+  @HiveField(5)
   final String category;
   final List<String> _ingredients;
   @override
+  @HiveField(6)
   List<String> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
@@ -253,30 +267,38 @@ class _$_ProductEntity implements _ProductEntity {
 
 abstract class _ProductEntity implements ProductEntity {
   factory _ProductEntity(
-      {required final String name,
-      required final String id,
-      required final String description,
-      required final double cost,
-      required final String image,
-      required final String category,
-      required final List<String> ingredients}) = _$_ProductEntity;
+          {@HiveField(0) required final String name,
+          @HiveField(1) required final String id,
+          @HiveField(2) required final String description,
+          @HiveField(3) required final double cost,
+          @HiveField(4) required final String image,
+          @HiveField(5) required final String category,
+          @HiveField(6) required final List<String> ingredients}) =
+      _$_ProductEntity;
 
   factory _ProductEntity.fromJson(Map<String, dynamic> json) =
       _$_ProductEntity.fromJson;
 
   @override
+  @HiveField(0)
   String get name;
   @override
+  @HiveField(1)
   String get id;
   @override
+  @HiveField(2)
   String get description;
   @override
+  @HiveField(3)
   double get cost;
   @override
+  @HiveField(4)
   String get image;
   @override
+  @HiveField(5)
   String get category;
   @override
+  @HiveField(6)
   List<String> get ingredients;
   @override
   @JsonKey(ignore: true)
