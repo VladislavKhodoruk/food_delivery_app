@@ -7,9 +7,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../entities/cart_item/cart_item_entity.dart';
 import '../entities/product/product_entity.dart';
 import '../providers/local/hive_provider.dart';
-import '../providers/remote/api_provider.dart';
+import '../providers/local/settings_provider.dart';
+import '../providers/remote/firebase_provider.dart';
 import '../repositories/cart_repository_impl.dart';
 import '../repositories/products_repository_impl.dart';
+import '../repositories/settings_repository_impl.dart';
 
 final DataDI dataDI = DataDI();
 
@@ -23,6 +25,8 @@ class DataDI {
     _initHiveAdapters();
     _initHiveProvider();
     _initCart();
+    _initSettings();
+    _initSettingsProvider();
   }
 
   void _initFirebaseOptions() {
@@ -41,8 +45,8 @@ class DataDI {
   }
 
   void _initApiProvider() {
-    appLocator.registerLazySingleton<ApiProvider>(
-      () => ApiProvider(
+    appLocator.registerLazySingleton<FirebaseProvider>(
+      () => FirebaseProvider(
         database: FirebaseFirestore.instance,
       ),
     );
@@ -51,7 +55,7 @@ class DataDI {
   void _initProducts() {
     appLocator.registerLazySingleton<ProductsRepository>(
       () => ProductsRepositoryImpl(
-        apiProvider: appLocator.get<ApiProvider>(),
+        firebaseProvider: appLocator.get<FirebaseProvider>(),
       ),
     );
 
@@ -105,6 +109,32 @@ class DataDI {
     appLocator.registerLazySingleton<DeleteAllCartItemsFromStorageUseCase>(
       () => DeleteAllCartItemsFromStorageUseCase(
         cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+  }
+
+  void _initSettingsProvider() {
+    appLocator.registerLazySingleton<SettingsProvider>(
+      () => SettingsProvider(),
+    );
+  }
+
+  void _initSettings() {
+    appLocator.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        settingsProvider: appLocator.get<SettingsProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<GetThemeModeUseCase>(
+      () => GetThemeModeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<SetThemeModeUseCase>(
+      () => SetThemeModeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
       ),
     );
   }

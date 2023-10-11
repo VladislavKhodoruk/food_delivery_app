@@ -1,7 +1,6 @@
-import 'package:domain/domain.dart';
+import '../domain.dart';
 
-class GetAllCartItemsFromStorageUseCase
-    implements FutureUseCase<NoParams, List<CartItemModel>> {
+class GetAllCartItemsFromStorageUseCase implements FutureUseCase<NoParams, List<CartItemModel>> {
   final CartRepository _cartRepository;
 
   const GetAllCartItemsFromStorageUseCase({

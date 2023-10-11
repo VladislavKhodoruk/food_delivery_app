@@ -1,7 +1,6 @@
-import 'package:domain/domain.dart';
+import '../domain.dart';
 
-class DeleteAllCartItemsFromStorageUseCase
-    implements FutureUseCase<NoParams, void> {
+class DeleteAllCartItemsFromStorageUseCase implements FutureUseCase<NoParams, void> {
   final CartRepository _cartRepository;
 
   const DeleteAllCartItemsFromStorageUseCase({

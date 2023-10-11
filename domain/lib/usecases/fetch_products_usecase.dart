@@ -1,9 +1,6 @@
-import 'package:domain/models/product/product_model.dart';
-import 'package:domain/repositories/products_repository.dart';
-import 'package:domain/usecases/usecase.dart';
+import '../domain.dart';
 
-class FetchAllProductsUseCase
-    implements FutureUseCase<NoParams, List<ProductModel>> {
+class FetchAllProductsUseCase implements FutureUseCase<NoParams, List<ProductModel>> {
   final ProductsRepository _productsRepository;
 
   const FetchAllProductsUseCase({

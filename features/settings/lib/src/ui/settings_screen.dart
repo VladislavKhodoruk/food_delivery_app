@@ -38,10 +38,8 @@ class SettingsScreen extends StatelessWidget {
                           width: AppSpacing.spacing10,
                         ),
                         Switch(
-                          value: state.darkMode,
-                          onChanged: (_) => context
-                              .read<SettingsBloc>()
-                              .add(SwitchThemeEvent()),
+                          value: state.isDark,
+                          onChanged: (_) => context.read<SettingsBloc>().add(SwitchThemeEvent()),
                         ),
                         const SizedBox(
                           width: AppSpacing.spacing10,

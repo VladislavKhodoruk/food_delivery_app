@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
@@ -11,7 +12,10 @@ class FoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SettingsBloc>(
-      create: (BuildContext context) => SettingsBloc(),
+      create: (BuildContext context) => SettingsBloc(
+        setThemeModeUseCase: appLocator.get<SetThemeModeUseCase>(),
+        getThemeModeUseCase: appLocator.get<GetThemeModeUseCase>(),
+      ),
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (
           BuildContext context,
@@ -22,10 +26,9 @@ class FoodApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             title: 'Flutter Food Delivery Application',
-            theme: state.darkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+            theme: state.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
             routerDelegate: appLocator.get<AppRouter>().delegate(),
-            routeInformationParser:
-                appLocator.get<AppRouter>().defaultRouteParser(),
+            routeInformationParser: appLocator.get<AppRouter>().defaultRouteParser(),
           );
         },
       ),
