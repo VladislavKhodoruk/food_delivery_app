@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:data/di/data_di.dart';
 import 'package:data/providers/local/hive_provider.dart';
+import 'package:data/providers/local/settings_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'app/food_app.dart';
@@ -12,6 +13,7 @@ void main() async {
   dataDI.initDependencies();
   await appLocator.allReady();
   await appLocator<HiveProvider>().openBoxes();
+  await appLocator<SettingsProvider>().openBoxes();
   await EasyLocalization.ensureInitialized();
 
   runApp(

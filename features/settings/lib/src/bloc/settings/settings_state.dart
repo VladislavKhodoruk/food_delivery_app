@@ -1,21 +1,21 @@
 part of 'settings_bloc.dart';
 
 class SettingsState {
-  final bool darkMode;
+  final bool isDark;
 
   const SettingsState({
-    required this.darkMode,
+    required this.isDark,
   });
 
   SettingsState.empty({
-    this.darkMode = false,
+    this.isDark = false,
   });
 
   SettingsState copyWith({
-    bool? darkMode,
+    bool? isDark,
   }) {
     return SettingsState(
-      darkMode: darkMode ?? this.darkMode,
+      isDark: isDark ?? this.isDark,
     );
   }
 }

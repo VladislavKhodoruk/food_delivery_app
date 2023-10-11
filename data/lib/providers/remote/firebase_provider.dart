@@ -3,10 +3,10 @@ import 'package:core/constants/constants.dart';
 
 import '../../entities/product/product_entity.dart';
 
-class ApiProvider {
+class FirebaseProvider {
   final FirebaseFirestore _database;
 
-  ApiProvider({
+  FirebaseProvider({
     required FirebaseFirestore database,
   }) : _database = database;
 
@@ -16,8 +16,7 @@ class ApiProvider {
 
     return productsRawData.docs
         .map(
-          (QueryDocumentSnapshot<Map<String, dynamic>> documentSnapshot) =>
-              ProductEntity.fromJson(
+          (QueryDocumentSnapshot<Map<String, dynamic>> documentSnapshot) => ProductEntity.fromJson(
             documentSnapshot.data(),
           ),
         )

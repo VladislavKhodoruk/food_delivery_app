@@ -2,22 +2,19 @@ import 'package:domain/domain.dart';
 
 import '../entities/product/product_entity.dart';
 import '../mappers/products_mapper.dart';
-import '../providers/remote/api_provider.dart';
+import '../providers/remote/firebase_provider.dart';
 
 class ProductsRepositoryImpl implements ProductsRepository {
-  final ApiProvider _apiProvider;
+  final FirebaseProvider _firebaseProvider;
 
   ProductsRepositoryImpl({
-    required ApiProvider apiProvider,
-  }) : _apiProvider = apiProvider;
+    required FirebaseProvider firebaseProvider,
+  }) : _firebaseProvider = firebaseProvider;
 
   @override
   Future<List<ProductModel>> fetchAllProducts() async {
-    final List<ProductEntity> productsFromApi =
-        await _apiProvider.getProducts();
+    final List<ProductEntity> productsFromApi = await _firebaseProvider.getProducts();
 
-    return productsFromApi
-        .map((ProductEntity e) => ProductMapper.toModel(e))
-        .toList();
+    return productsFromApi.map((ProductEntity e) => ProductMapper.toModel(e)).toList();
   }
 }
